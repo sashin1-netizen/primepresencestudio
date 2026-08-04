@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import RevealSection from "./motion/RevealSection";
 
 const steps = [
@@ -36,14 +35,10 @@ export default function Process() {
       </div>
 
       <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b0b0b] p-2">
-          <Image
-            src="/images/media/process-visual.svg"
-            alt="Luxury creative process visual"
-            width={1200}
-            height={800}
-            className="h-full w-full rounded-[1.5rem] object-cover"
-          />
+        <div aria-hidden="true" className="relative min-h-80 overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_25%_25%,rgba(200,163,72,.2),transparent_28%),linear-gradient(145deg,#12100b,#060606)] p-8">
+          <div className="absolute inset-10 rounded-full border border-[#c8a348]/20" />
+          <div className="absolute inset-20 rounded-full border border-white/10" />
+          <div className="absolute inset-[35%] rotate-45 border border-[#c8a348]/40 bg-[#c8a348]/10" />
         </div>
 
         <div className="grid gap-6 md:grid-cols-2">

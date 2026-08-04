@@ -6,7 +6,7 @@ Nothing below may be invented. `P0` blocks public launch; `P1` materially affect
 |---|---|---|---|---|
 | P0 | Public and legal business name | Exact spelling plus legal contracting entity | Owner + legal | Global, Privacy, Terms; contract confidence |
 | P0 | Production domain | Confirm HTTPS origin and www/non-www choice | Owner | Canonicals, sitemap, robots, schema, social cards |
-| P0 | Contact facts | Confirm `hello@primepresence@gmail.com`, `+27 71 154 7161`, hours and monitoring owner | Owner | Header, footer, contact; successful enquiry |
+| P0 | Contact facts | Supply and confirm the monitored email, international telephone/WhatsApp, hours and contact owner | Owner | Header, footer, contact; successful enquiry |
 | P0 | Media-rights register | For every deployed image/video: creator, source, licence/assignment, client consent, territory/expiry, approval date | Owner + rights holder | Homepage and future work; lawful publication |
 | P0 | Privacy and Terms | Reviewed final text, responsible legal entity and contact | Legal | Privacy/Terms; lawful launch |
 | P0 | Open Graph artwork | 1200×630 WebP/JPEG, ≤300 KB, safe-area text, alt text | Brand owner + media rights | Social sharing credibility |

@@ -1,12 +1,11 @@
 import { PUBLICATION_STATUSES } from "../content/owner-content.mjs";
 import { canPublishPerson, canPublishProject, canPublishTestimonial } from "./publication.mjs";
+import { isValidEmail, isValidTelephone, isValidWhatsApp } from "./contact-config.mjs";
 
 const IMAGE_FORMATS = new Set([".avif", ".webp", ".jpg", ".jpeg", ".png", ".svg"]);
 const VIDEO_FORMATS = new Set([".mp4", ".webm"]);
 const MAX_IMAGE_BYTES = 500_000;
 const MAX_VIDEO_BYTES = 5_000_000;
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const internationalPhone = /^\+?[1-9]\d{7,14}$/;
 
 const extension = value => value?.slice(value.lastIndexOf(".")).toLowerCase() || "";
 const issue = (severity, code, path, message) => ({ severity, code, path, message });
@@ -16,8 +15,9 @@ const validUrl = value => { try { return new URL(value).protocol === "https:"; }
 export function validateOwnerContent(content, options = {}) {
   const issues = []; const { assetExists = () => true } = options; const { business, legal, openGraph } = content;
   for (const [key, label] of [["publicName","Public business name"],["legalName","Legal business name"],["email","Email"],["telephone","Telephone"],["whatsapp","WhatsApp"],["location","Location wording"],["serviceArea","Service area"],["copyrightHolder","Copyright holder"],["legalContact","Legal contact"],["privacyContact","Privacy contact"],["termsContact","Terms contact"],["domain","Domain"],["canonicalUrl","Canonical URL"]]) required(issues, business[key], `business.${key}`, label);
-  if (business.email && !emailPattern.test(business.email)) issues.push(issue("blocker", "invalid_email", "business.email", "Email address is invalid."));
-  for (const key of ["telephone", "whatsapp"]) if (business[key] && !internationalPhone.test(business[key].replace(/[\s()-]/g, ""))) issues.push(issue("blocker", "invalid_phone", `business.${key}`, `${key} must use a valid international number.`));
+  if (business.email && !isValidEmail(business.email)) issues.push(issue("blocker", "invalid_email", "business.email", "Email address is invalid or contains more than one @ symbol."));
+  if (business.telephone && !isValidTelephone(business.telephone)) issues.push(issue("blocker", "invalid_phone", "business.telephone", "Telephone must use + and a valid international number."));
+  if (business.whatsapp && !isValidWhatsApp(business.whatsapp)) issues.push(issue("blocker", "invalid_whatsapp", "business.whatsapp", "WhatsApp must use international digits only."));
   if (business.canonicalUrl && !validUrl(business.canonicalUrl)) issues.push(issue("blocker", "invalid_url", "business.canonicalUrl", "Canonical URL must be an absolute HTTPS URL."));
   business.socialLinks.forEach((link, index) => { if (!validUrl(link.url)) issues.push(issue("blocker", "invalid_social_url", `business.socialLinks.${index}.url`, "Social URL must use HTTPS.")); });
   if (!business.ownerConfirmed || !business.approvalDate) issues.push(issue("blocker", "business_unconfirmed", "business", "Business details require owner confirmation and an approval date."));
@@ -35,8 +35,8 @@ export function validateOwnerContent(content, options = {}) {
     if (project.brandRevealVideo && !project.brandRevealVideo.poster) issues.push(issue("blocker", "missing_video_poster", `${path}.brandRevealVideo.poster`, "Video requires a poster image."));
   });
   for (const [group, records, predicate] of [["founders",content.founders,canPublishPerson],["team",content.team,canPublishPerson],["testimonials",content.testimonials,canPublishTestimonial]]) records.forEach((record, index) => { const path = `${group}.${index}`; validateStatus(issues, record, path); if (record.publicationStatus === "published" && !predicate(record)) issues.push(issue("blocker", `${group}_publication_blocked`, path, `Published ${group} record lacks required approval, consent or rights.`)); if (group === "testimonials" && !record.quote?.trim()) issues.push(issue(record.publicationStatus === "published" ? "blocker" : "warning", "empty_testimonial", `${path}.quote`, "Testimonial quote is empty.")); if (record.portrait) allAssets.push({ ...record.portrait, path: `${path}.portrait`, kind: "image" }); });
-  content.media.forEach((record, index) => { validateStatus(issues, record, `media.${index}`); allAssets.push({ src: `/media/${record.filename}`, filename: record.filename, bytes: record.bytes, path: `media.${index}`, kind: VIDEO_FORMATS.has(extension(record.filename)) ? "video" : "image" }); if (record.publicationStatus === "published" && record.permissionStatus !== "approved") issues.push(issue("blocker", "missing_media_rights", `media.${index}`, "Published media requires approved permission.")); });
-  for (const artwork of [openGraph.defaultArtwork, ...openGraph.routeArtwork, ...openGraph.projectArtwork].filter(Boolean)) allAssets.push({ ...artwork, path: "openGraph", kind: "image" });
+  content.media.forEach((record, index) => { validateStatus(issues, record, `media.${index}`); required(issues,record.assetId,`media.${index}.assetId`,"Media asset ID"); required(issues,record.source,`media.${index}.source`,"Media source"); required(issues,record.copyrightHolder,`media.${index}.copyrightHolder`,"Media copyright holder"); if(!record.decorative&&!record.alt?.trim())issues.push(issue("blocker","missing_alt",`media.${index}.alt`,"Informative media requires alt text.")); allAssets.push({ src: record.src, filename: record.filename, alt: record.decorative ? "Decorative" : record.alt, bytes: record.bytes, path: `media.${index}`, kind: VIDEO_FORMATS.has(extension(record.filename)) ? "video" : "image" }); if (record.publicationStatus === "published" && record.permissionStatus !== "approved") issues.push(issue("blocker", "missing_media_rights", `media.${index}`, "Published media requires approved permission.")); });
+  for (const artwork of [openGraph.defaultArtwork, ...openGraph.routeArtwork, ...openGraph.projectArtwork].filter(Boolean)) { allAssets.push({ ...artwork, path: "openGraph", kind: "image" }); if (artwork.publicationStatus === "published") { if (artwork.width !== 1200 || artwork.height !== 630) issues.push(issue("blocker", "invalid_og_dimensions", "openGraph", "Published Open Graph artwork must be 1200x630.")); if (!new Set([".webp", ".jpg", ".jpeg"]).has(extension(artwork.filename || artwork.src))) issues.push(issue("blocker", "invalid_og_format", "openGraph", "Published Open Graph artwork must be WebP or JPEG.")); if (!Number.isFinite(artwork.bytes) || artwork.bytes > 300_000) issues.push(issue("blocker", "invalid_og_size", "openGraph", "Published Open Graph artwork must record a file size no larger than 300 KB.")); } }
   validateAssets(issues, allAssets, assetExists);
   return issues;
 }

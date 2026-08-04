@@ -43,7 +43,7 @@ Status progression is `draft` → `review` → `approved` → `published`; `reje
 ## Current blockers
 
 - Business: legal name, service area, copyright holder, legal/privacy/terms contacts, domain/canonical URL, owner confirmation and approval date.
-- Contact: `hello@primepresence@gmail.com` contains two `@` characters and fails validation; owner must supply and confirm the intended mailbox.
+- Contact: the previously entered malformed email was removed; the owner must supply and confirm the intended mailbox.
 - Legal: privacy/terms approval, reviewer/date, cookie and analytics determinations, media/project wording and outstanding issue closure.
 - Media/proof: no approved default OG artwork, case studies, founders, team or testimonials. Optional people/proof sections correctly remain hidden.
 - Domain: no confirmed production host or host-level validation.

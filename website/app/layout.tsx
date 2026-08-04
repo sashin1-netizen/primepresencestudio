@@ -5,6 +5,7 @@ import { ownerContent } from "@/content/owner-content.mjs";
 import { selectOpenGraphArtwork } from "@/lib/content-selectors.mjs";
 import { privatePreviewEnabled } from "@/lib/preview";
 import PreviewBanner from "@/components/PreviewBanner";
+import { contactDetails } from "@/content/site";
 
 const canonicalBase = process.env.NEXT_PUBLIC_SITE_URL || ownerContent.business.canonicalUrl || "http://localhost:3000";
 const defaultArtwork = selectOpenGraphArtwork(ownerContent.openGraph);
@@ -43,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const productionUrl = ownerContent.business.ownerConfirmed && ownerContent.business.canonicalUrl ? ownerContent.business.canonicalUrl : null;
-  const organisation = productionUrl ? { "@context": "https://schema.org", "@type": "ProfessionalService", name: site.name, url: productionUrl, description: site.description, email: site.email, telephone: site.phoneDisplay, areaServed: site.serviceArea || undefined } : null;
+  const organisation = productionUrl ? { "@context": "https://schema.org", "@type": "ProfessionalService", name: site.name, url: productionUrl, description: site.description, ...(contactDetails.email ? { email: contactDetails.email } : {}), ...(contactDetails.phoneDisplay ? { telephone: contactDetails.phoneDisplay } : {}), areaServed: site.serviceArea || undefined } : null;
   return (
     <html lang="en-ZA">
       <body className="antialiased bg-[#050505] text-white">

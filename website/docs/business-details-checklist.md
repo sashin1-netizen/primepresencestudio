@@ -4,7 +4,7 @@
 |---|---|---|
 | Brand name: Prime Presence | Pending | Owner confirms exact public spelling |
 | Legal contracting name | Legal review required | Supply entity name and registration details only if legally required |
-| Email: hello@primepresence@gmail.com | Pending | Confirm spelling, ownership and monitoring |
+| Email address | Pending | Supply a valid monitored mailbox and confirm ownership |
 | WhatsApp/telephone: +27 71 154 7161 | Pending | Confirm number and permission to publish |
 | Hours: Monday–Friday, 09:00–17:00 SAST | Pending | Confirm operational accuracy |
 | Location wording: South Africa | Pending | Confirm; no address/service area invented |

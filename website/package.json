@@ -4,15 +4,20 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/build-safety.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "test": "node --test tests/*.test.mjs",
     "content:validate": "node scripts/content-workflow.mjs validate",
     "content:preview": "node scripts/content-workflow.mjs preview",
     "content:report": "node scripts/content-workflow.mjs report",
-    "test:routes": "node scripts/route-smoke.mjs"
+    "test:routes": "node scripts/route-smoke.mjs",
+    "launch:validate": "node scripts/launch-validate.mjs",
+    "preview:validate": "node scripts/launch-validate.mjs --preview",
+    "preview:verify": "node scripts/verify-preview.mjs",
+    "lighthouse:check": "node scripts/check-lighthouse.mjs"
   },
+  "engines": { "node": ">=20.9.0" },
   "dependencies": {
     "framer-motion": "^12.43.0",
     "next": "16.2.12",

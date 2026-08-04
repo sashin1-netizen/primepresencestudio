@@ -1,4 +1,5 @@
 export const PUBLICATION_STATUSES = ["draft", "review", "approved", "published", "rejected"];
+const publicLaunchApproved = process.env.PUBLIC_LAUNCH_APPROVED === "true";
 
 /**
  * The single owner-controlled content manifest. Empty values are intentional blockers.
@@ -8,9 +9,12 @@ export const ownerContent = {
   business: {
     publicName: "Prime Presence",
     legalName: "",
-    email: "hello@primepresence@gmail.com",
-    telephone: "+27 71 154 7161",
-    whatsapp: "27711547161",
+    email: process.env.NEXT_PUBLIC_BUSINESS_EMAIL || null,
+    emailConfirmed: publicLaunchApproved && Boolean(process.env.NEXT_PUBLIC_BUSINESS_EMAIL),
+    telephone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || null,
+    telephoneConfirmed: publicLaunchApproved && Boolean(process.env.NEXT_PUBLIC_BUSINESS_PHONE),
+    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || null,
+    whatsappConfirmed: publicLaunchApproved && Boolean(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER),
     location: "South Africa",
     serviceArea: "",
     hours: "Monday–Friday, 09:00–17:00 SAST",
@@ -19,8 +23,8 @@ export const ownerContent = {
     legalContact: "",
     privacyContact: "",
     termsContact: "",
-    domain: "",
-    canonicalUrl: "",
+    domain: process.env.NEXT_PUBLIC_CANONICAL_DOMAIN || "",
+    canonicalUrl: process.env.NEXT_PUBLIC_SITE_URL || "",
     ownerConfirmed: false,
     approvalDate: null,
   },
@@ -58,5 +62,6 @@ export const ownerContent = {
     accessibilityCriticalChecksPassed: true,
     contactFlowPassed: false,
     highSeveritySecurityIssuesResolved: true,
+    launchApprovalRecorded: false,
   },
 };

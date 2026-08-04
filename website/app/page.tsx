@@ -13,13 +13,15 @@ import TrustPrinciples from "../components/cinematic/TrustPrinciples";
 import PremiumCTA from "../components/cinematic/PremiumCTA";
 import SectionDivider from "../components/cinematic/SectionDivider";
 import { contactDetails, site } from "@/content/site";
+import { publishedMediaById } from "@/content/media";
 
 export default function Home() {
+  const heroMedia = publishedMediaById("home-hero");
   return (
     <>
       <Navbar siteName={site.name} />
       <main id="main-content" className="overflow-hidden bg-[#050505] text-white">
-        <Hero location={site.location} />
+        <Hero location={site.location} media={heroMedia ? { src: heroMedia.src, alt: heroMedia.alt, decorative: heroMedia.decorative } : undefined} />
         <StoryPanel />
         <SectionDivider />
         <Services />

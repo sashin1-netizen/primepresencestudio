@@ -1,0 +1,35 @@
+<svg width="1600" height="1100" viewBox="0 0 1600 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1100" rx="40" fill="#050505"/>
+  <rect x="60" y="60" width="1480" height="980" rx="34" fill="url(#bg)"/>
+  <rect x="170" y="180" width="620" height="420" rx="28" fill="#0F0F0F" stroke="#C8A348" stroke-opacity="0.22"/>
+  <rect x="860" y="190" width="560" height="360" rx="28" fill="#121212" stroke="#E8C766" stroke-opacity="0.18"/>
+  <rect x="190" y="650" width="1180" height="240" rx="28" fill="#101010" stroke="#C8A348" stroke-opacity="0.16"/>
+  <circle cx="1290" cy="320" r="170" fill="url(#glow)" fill-opacity="0.7"/>
+  <circle cx="432" cy="790" r="200" fill="url(#glow2)" fill-opacity="0.42"/>
+  <rect x="230" y="230" width="220" height="140" rx="18" fill="#0A0A0A" stroke="#F6E7A3" stroke-opacity="0.2"/>
+  <rect x="480" y="230" width="180" height="140" rx="18" fill="#0A0A0A" stroke="#C8A348" stroke-opacity="0.2"/>
+  <path d="M228 470H520" stroke="#F6E7A3" stroke-width="3" stroke-linecap="round"/>
+  <path d="M228 518H422" stroke="#C8A348" stroke-width="3" stroke-linecap="round"/>
+  <path d="M228 566H364" stroke="#E8C766" stroke-width="3" stroke-linecap="round"/>
+  <path d="M940 280H1182" stroke="#F6E7A3" stroke-width="3" stroke-linecap="round"/>
+  <path d="M940 324H1128" stroke="#C8A348" stroke-width="3" stroke-linecap="round"/>
+  <path d="M940 368H1048" stroke="#E8C766" stroke-width="3" stroke-linecap="round"/>
+  <rect x="250" y="710" width="260" height="120" rx="16" fill="#0A0A0A" stroke="#C8A348" stroke-opacity="0.2"/>
+  <rect x="540" y="710" width="260" height="120" rx="16" fill="#0A0A0A" stroke="#F6E7A3" stroke-opacity="0.16"/>
+  <rect x="830" y="710" width="260" height="120" rx="16" fill="#0A0A0A" stroke="#E8C766" stroke-opacity="0.18"/>
+  <rect x="1120" y="710" width="180" height="120" rx="16" fill="#0A0A0A" stroke="#C8A348" stroke-opacity="0.18"/>
+  <defs>
+    <linearGradient id="bg" x1="152" y1="96" x2="1470" y2="1002" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111111"/>
+      <stop offset="1" stop-color="#050505"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1290 320) rotate(90) scale(170)">
+      <stop stop-color="#F6E7A3"/>
+      <stop offset="1" stop-color="#C8A348" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(432 790) rotate(90) scale(200)">
+      <stop stop-color="#E8C766"/>
+      <stop offset="1" stop-color="#C8A348" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

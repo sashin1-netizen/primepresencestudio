@@ -1,0 +1,22 @@
+<svg width="1200" height="900" viewBox="0 0 1200 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="900" rx="36" fill="#050505"/>
+  <rect x="86" y="86" width="1028" height="728" rx="28" fill="#0E0E0E" stroke="#C8A348" stroke-opacity="0.18"/>
+  <rect x="160" y="180" width="360" height="220" rx="22" fill="#101010" stroke="#F6E7A3" stroke-opacity="0.16"/>
+  <rect x="560" y="180" width="480" height="220" rx="22" fill="#111111" stroke="#E8C766" stroke-opacity="0.16"/>
+  <rect x="160" y="440" width="880" height="220" rx="24" fill="#0F0F0F" stroke="#C8A348" stroke-opacity="0.16"/>
+  <circle cx="330" cy="290" r="96" fill="url(#glow)" fill-opacity="0.72"/>
+  <path d="M260 292C282 248 330 222 378 232" stroke="#F6E7A3" stroke-width="3" stroke-linecap="round"/>
+  <path d="M268 292C288 278 310 272 332 272" stroke="#C8A348" stroke-width="3" stroke-linecap="round"/>
+  <rect x="600" y="226" width="180" height="112" rx="20" fill="#131313" stroke="#C8A348" stroke-opacity="0.22"/>
+  <rect x="810" y="226" width="180" height="112" rx="20" fill="#131313" stroke="#F6E7A3" stroke-opacity="0.18"/>
+  <rect x="208" y="484" width="154" height="90" rx="16" fill="#0A0A0A" stroke="#C8A348" stroke-opacity="0.2"/>
+  <rect x="396" y="484" width="154" height="90" rx="16" fill="#0A0A0A" stroke="#E8C766" stroke-opacity="0.2"/>
+  <rect x="584" y="484" width="154" height="90" rx="16" fill="#0A0A0A" stroke="#F6E7A3" stroke-opacity="0.16"/>
+  <rect x="772" y="484" width="154" height="90" rx="16" fill="#0A0A0A" stroke="#C8A348" stroke-opacity="0.18"/>
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(330 290) rotate(90) scale(96)">
+      <stop stop-color="#F6E7A3"/>
+      <stop offset="1" stop-color="#C8A348" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

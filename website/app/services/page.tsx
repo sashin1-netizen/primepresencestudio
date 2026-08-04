@@ -1,0 +1,5 @@
+import PageShell from "@/components/PageShell";
+import Contact from "@/components/Contact";
+import { services } from "@/content/site";
+export const metadata = { title: "Branding & Website Services", description: "Logo design, brand identity, strategy, reveal video and premium website services for South African businesses.", alternates: { canonical: "/services" } };
+export default function Page() { return <><PageShell eyebrow="Services" title="A stronger presence, built as a system." intro="Choose a focused deliverable or combine strategy, identity and digital execution into one coherent engagement."><div className="grid gap-px bg-white/10 md:grid-cols-2">{services.map(s => <article key={s.slug} className="bg-[#080808] p-8 sm:p-10"><h2 className="font-[family-name:var(--font-cormorant)] text-3xl">{s.title}</h2><p className="mt-4 leading-7 text-gray-300">{s.summary}</p><p className="mt-6 text-sm text-[#C8A348]">Typical output</p><p className="mt-2 text-sm leading-7 text-gray-400">{s.deliverables}</p></article>)}</div></PageShell><Contact /></> }

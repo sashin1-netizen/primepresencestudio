@@ -4,7 +4,8 @@
 
 - Branch: `codex/website-cinematic-production`
 - Foundation commit: `17414912364cf97a97a074973cd32bb823920b80`
-- Final cinematic commit: recorded after final commit below.
+- Final cinematic source commit: `d48b27d928522d9da61e952a4dce402dc2c123a5`
+- The documentation-only checkpoint that records this hash is the branch HEAD immediately following it.
 
 ## Completed work
 

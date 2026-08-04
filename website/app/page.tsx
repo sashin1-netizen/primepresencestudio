@@ -1,15 +1,17 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import ExperienceRibbon from "../components/ExperienceRibbon";
 import StoryPanel from "../components/StoryPanel";
 import Services from "../components/Services";
 import Portfolio from "../components/Portfolio";
 import Process from "../components/Process";
-import Industries from "../components/Industries";
-import Insights from "../components/Insights";
 import FAQ from "../components/FAQ";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
+import BrandRevealPanel from "../components/cinematic/BrandRevealPanel";
+import WebsiteShowcase from "../components/cinematic/WebsiteShowcase";
+import TrustPrinciples from "../components/cinematic/TrustPrinciples";
+import PremiumCTA from "../components/cinematic/PremiumCTA";
+import SectionDivider from "../components/cinematic/SectionDivider";
 
 export default function Home() {
   return (
@@ -17,14 +19,16 @@ export default function Home() {
       <Navbar />
       <main id="main-content" className="overflow-hidden bg-[#050505] text-white">
         <Hero />
-        <ExperienceRibbon />
         <StoryPanel />
+        <SectionDivider />
         <Services />
+        <BrandRevealPanel />
         <Portfolio />
+        <WebsiteShowcase />
         <Process />
-        <Industries />
-        <Insights />
+        <TrustPrinciples />
         <FAQ />
+        <PremiumCTA />
         <Contact />
       </main>
       <Footer />

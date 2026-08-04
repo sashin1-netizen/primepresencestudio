@@ -2,17 +2,17 @@ const faqs = [
   {
     question: "What types of brands do you work with?",
     answer:
-      "We collaborate with luxury, fashion, hospitality, lifestyle and founder-led businesses that want a refined and strategic presence.",
+      "We work with owner-led, new and growing businesses that care about trust, presentation and a coherent brand presence.",
   },
   {
     question: "How long does a typical engagement take?",
     answer:
-      "Most projects span between three and eight weeks depending on scope, deliverables and launch timing.",
+      "Timing depends on scope, feedback and launch requirements. A realistic schedule is agreed after discovery rather than promised before the project is understood.",
   },
   {
     question: "Do you offer ongoing support?",
     answer:
-      "Yes. We can support launch campaigns, content direction, and ongoing brand evolution after the initial identity is delivered.",
+      "Ongoing support can be scoped where it is useful. Availability and deliverables are confirmed in the project proposal.",
   },
 ];
 
@@ -24,7 +24,7 @@ export default function FAQ() {
           FAQ
         </p>
         <h2 className="font-[family-name:var(--font-cormorant)] text-4xl text-white sm:text-5xl">
-          Questions about creating a more distinguished brand presence.
+          Useful answers before starting a project.
         </h2>
       </div>
 

@@ -1,0 +1,2 @@
+import type { MetadataRoute } from "next";
+export default function manifest(): MetadataRoute.Manifest { return { name: "Prime Presence", short_name: "Prime Presence", description: "Branding and digital experience studio in South Africa.", start_url: "/", display: "standalone", background_color: "#050505", theme_color: "#050505", icons: [{ src: "/favicon.ico", sizes: "any", type: "image/x-icon" }] }; }

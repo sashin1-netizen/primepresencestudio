@@ -3,8 +3,25 @@
 :root {
   --background: #050505;
   --foreground: #f5f5f0;
+  --surface: #0a0a09;
+  --surface-raised: #11110f;
+  --muted: #aaa79f;
+  --gold: #c8a348;
+  --gold-bright: #f0d788;
+  --line: rgba(255, 255, 255, 0.12);
   --font-inter: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-cormorant: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --space-section: clamp(5rem, 10vw, 9rem);
+  --container: 80rem;
+  --radius-sm: .75rem;
+  --radius-md: 1.5rem;
+  --radius-lg: 2.25rem;
+  --ease-cinematic: cubic-bezier(.22, 1, .36, 1);
+  --duration-fast: 180ms;
+  --duration-base: 420ms;
+  --duration-slow: 800ms;
+  --shadow-gold: 0 30px 100px rgba(200, 163, 72, .1);
+  --z-nav: 50;
 }
 
 .skip-link {
@@ -49,6 +66,17 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
+.container-site { width: min(calc(100% - 2rem), var(--container)); margin-inline: auto; }
+.section-space { padding-block: var(--space-section); }
+.surface { border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius-md); }
+.text-balance { text-wrap: balance; }
+.eyebrow { color: var(--gold); font-size: .75rem; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; }
+.display { font-family: var(--font-cormorant); font-size: clamp(3.25rem, 8vw, 7.75rem); line-height: .88; letter-spacing: -.035em; }
+.section-title { font-family: var(--font-cormorant); font-size: clamp(2.5rem, 5vw, 5rem); line-height: .98; letter-spacing: -.025em; }
+.gold-rule { height: 1px; background: linear-gradient(90deg, transparent, rgba(200,163,72,.7), transparent); }
+
+@media (min-width: 640px) { .container-site { width: min(calc(100% - 4rem), var(--container)); } }
 
 main {
   padding-bottom: calc(2rem + env(safe-area-inset-bottom));

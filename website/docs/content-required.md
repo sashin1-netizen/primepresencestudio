@@ -6,10 +6,12 @@ The site deliberately does not invent business facts. The owner must approve or 
 - Confirm `hello@primepresence@gmail.com`, `+27 71 154 7161`, and Monday–Friday 09:00–17:00 SAST.
 - Confirm the production domain and set `NEXT_PUBLIC_SITE_URL`; the current SEO fallback is `https://primepresence.co.za` and must not be treated as ownership confirmation.
 - Provide approved portfolio projects: client/project name, industry, services, challenge, direction, deliverables, truthful outcome, approved imagery/video, alt text, and publication consent.
+- Populate `content/projects.ts` only after those facts are approved. Every published record must set `approvedForPublication: true`; optional fields remain hidden when absent.
 - Provide verified testimonials and explicit permission to publish names, roles, companies and wording. None are displayed now.
 - Confirm service scope, exclusions, indicative budget bands, lead times, revision policy and handover format.
 - Provide approved founder/studio story, team information and photography rights.
 - Confirm licensed ownership/use rights for every file in `public/images/real` and `public/videos/real`.
+- Confirm that the new `hero-studio-1920.webp`, `mockup-01-1600.webp`, and `process-01-1600.webp` derivatives may be published; they inherit the rights status of their source JPEGs.
 - Provide social profile URLs if they should be published.
 - Have South African counsel/owner review the privacy policy and terms; add the responsible party/legal entity details if required.
 - Decide on the production form backend and spam protection. The current form safely prepares an email in the visitor’s mail application and stores nothing.

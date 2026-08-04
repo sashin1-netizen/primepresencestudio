@@ -8,14 +8,14 @@ export default function StoryPanel() {
         <div className="rounded-[2rem] border border-[#C8A348]/20 bg-gradient-to-br from-[#111111] to-[#050505] p-10 shadow-[0_0_80px_rgba(200,163,72,0.12)] sm:p-14">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div>
-              <p className="mb-4 text-sm uppercase tracking-[0.35em] text-[#C8A348]">Luxury Experience</p>
+              <p className="mb-4 text-sm uppercase tracking-[0.35em] text-[#C8A348]">Why presence matters</p>
               <h2 className="font-[family-name:var(--font-cormorant)] text-3xl text-white sm:text-4xl">
-                A premium digital studio designed to feel as refined as the brands it elevates.
+                People decide what a business feels like before they study what it offers.
               </h2>
             </div>
             <div className="rounded-[1.5rem] border border-white/10 bg-black/30 p-8 text-sm leading-8 text-gray-300">
               <p>
-                From first impression to final delivery, every interaction is shaped to feel deliberate, editorial and memorable.
+                Prime Presence connects positioning, identity and digital execution so the first impression feels credible—and the experience that follows keeps that promise.
               </p>
               <Link href="/process" className="mt-6 inline-flex text-sm font-semibold uppercase tracking-[0.25em] text-[#C8A348] hover:text-[#F6E7A3]">
                 See the process →

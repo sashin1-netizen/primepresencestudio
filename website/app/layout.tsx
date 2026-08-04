@@ -23,7 +23,6 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
   viewportFit: "cover",
   themeColor: "#050505",
 };
@@ -33,10 +32,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const productionUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const organisation = productionUrl ? { "@context": "https://schema.org", "@type": "ProfessionalService", name: site.name, url: productionUrl, description: site.description, email: site.email, telephone: site.phoneDisplay } : null;
   return (
     <html lang="en-ZA">
       <body className="antialiased bg-[#050505] text-white">
         <a href="#main-content" className="skip-link">Skip to content</a>
+        {organisation && <script type="application/ld+json">{JSON.stringify(organisation)}</script>}
         {children}
       </body>
     </html>

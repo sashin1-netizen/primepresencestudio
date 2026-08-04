@@ -7,7 +7,7 @@ const ContentSecurityPolicy = [
   "font-src 'self';",
   "img-src 'self' data: https:;",
   "object-src 'none';",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval';",
+  "script-src 'self' 'unsafe-inline';",
   "style-src 'self' 'unsafe-inline';",
   "frame-ancestors 'none';",
 ].join(' ');
@@ -54,6 +54,8 @@ const nextConfig: NextConfig = {
         source: '/(.*)',
         headers: securityHeaders,
       },
+      { source: '/images/:path*', headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }] },
+      { source: '/videos/:path*', headers: [{ key: 'Cache-Control', value: 'public, max-age=31536000, immutable' }] },
     ];
   },
 };

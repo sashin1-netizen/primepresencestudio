@@ -86,8 +86,8 @@ body {
   font-weight: 700;
   transition: color var(--duration-fast), background var(--duration-fast), border-color var(--duration-fast), transform var(--duration-fast);
 }
-.button-primary { background: var(--gold); color: #050505; }
-.button-primary:hover { background: var(--gold-bright); }
+.button-primary { background: var(--gold-bright); color: #050505; }
+.button-primary:hover { background: #ffe8a3; }
 .button-secondary { border: 1px solid rgba(255,255,255,.22); color: white; }
 .button-secondary:hover { border-color: var(--gold); color: var(--gold-bright); }
 .button-primary:active, .button-secondary:active { transform: translateY(1px) scale(.99); }
@@ -95,6 +95,8 @@ body {
 .link-arrow:hover { text-decoration-line: underline; }
 .interactive-card { transition: border-color var(--duration-base), background var(--duration-base), transform var(--duration-base); }
 .interactive-card:hover { border-color: rgba(200,163,72,.45); transform: translateY(-2px); }
+.page-enter { animation: page-enter var(--duration-base) var(--ease-cinematic) both; }
+@keyframes page-enter { from { opacity: .96; } to { opacity: 1; } }
 
 @media (hover: none) { .interactive-card:hover { transform: none; } }
 

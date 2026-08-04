@@ -8,6 +8,9 @@ const ContentSecurityPolicy = [
   "img-src 'self' data: https:;",
   "object-src 'none';",
   "script-src 'self' 'unsafe-inline';",
+  "connect-src 'self';",
+  "media-src 'self' blob:;",
+  "form-action 'self' mailto:;",
   "style-src 'self' 'unsafe-inline';",
   "frame-ancestors 'none';",
 ].join(' ');

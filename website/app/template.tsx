@@ -1,3 +1,1 @@
-"use client";
-import { motion, useReducedMotion } from "framer-motion";
-export default function Template({ children }: { children: React.ReactNode }) { const reduced = useReducedMotion(); return <motion.div initial={reduced ? false : { opacity: .96 }} animate={{ opacity: 1 }} transition={{ duration: .28 }}>{children}</motion.div> }
+export default function Template({ children }: { children: React.ReactNode }) { return <div className="page-enter">{children}</div> }

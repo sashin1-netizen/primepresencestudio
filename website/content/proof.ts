@@ -1,0 +1,14 @@
+import { onlyApproved } from "@/lib/publication.mjs";
+type PublicationStatus = "draft" | "approved";
+export type SocialLink = { label: string; href: string };
+export type PersonProof = { id: string; name: string; role: string; biography: string; image?: { src: string; alt: string }; experience?: string[]; approach?: string; values?: string[]; location?: string; socialLinks?: SocialLink[]; publicationStatus: PublicationStatus };
+export type TestimonialProof = { id: string; quote: string; name: string; role?: string; company?: string; projectSlug?: string; permissionRecorded: boolean; publicationStatus: PublicationStatus };
+export type CredentialProof = { id: string; title: string; issuer?: string; evidenceUrl?: string; publicationStatus: PublicationStatus };
+export const founders: PersonProof[] = [];
+export const teamMembers: PersonProof[] = [];
+export const testimonials: TestimonialProof[] = [];
+export const credentials: CredentialProof[] = [];
+export const publishedFounders = onlyApproved(founders);
+export const publishedTeamMembers = onlyApproved(teamMembers);
+export const publishedTestimonials = onlyApproved(testimonials).filter(item => item.permissionRecorded);
+export const publishedCredentials = onlyApproved(credentials);

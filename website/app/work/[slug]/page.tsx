@@ -7,15 +7,15 @@ import BrandRevealPlayer from "@/components/portfolio/BrandRevealPlayer";
 import DevicePreview from "@/components/portfolio/DevicePreview";
 import ProjectGallery from "@/components/portfolio/ProjectGallery";
 import ProjectShowcase from "@/components/portfolio/ProjectShowcase";
-import { projects } from "@/content/projects";
+import { publishedProjects } from "@/content/projects";
 
 export const dynamicParams = false;
-export function generateStaticParams() { return projects.map(({ slug }) => ({ slug })); }
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> { const { slug } = await params; const project = projects.find(item => item.slug === slug); if (!project) return {}; return { title: project.client, description: project.summary, alternates: { canonical: `/work/${project.slug}` } }; }
+export function generateStaticParams() { return publishedProjects.map(({ slug }) => ({ slug })); }
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> { const { slug } = await params; const project = publishedProjects.find(item => item.slug === slug); if (!project) return {}; return { title: project.client, description: project.summary, alternates: { canonical: `/work/${project.slug}` } }; }
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params; const project = projects.find(item => item.slug === slug); if (!project) notFound();
-  const related = projects.filter(item => project.relatedProjectSlugs?.includes(item.slug)); const currentIndex = projects.findIndex(item => item.slug === slug); const next = projects.length > 1 ? projects[(currentIndex + 1) % projects.length] : undefined;
+  const { slug } = await params; const project = publishedProjects.find(item => item.slug === slug); if (!project) notFound();
+  const related = publishedProjects.filter(item => project.relatedProjectSlugs?.includes(item.slug)); const currentIndex = publishedProjects.findIndex(item => item.slug === slug); const next = publishedProjects.length > 1 ? publishedProjects[(currentIndex + 1) % publishedProjects.length] : undefined;
   return <PageShell eyebrow={project.industry ?? "Case study"} title={project.client} intro={project.summary}>
     <div className="space-y-24">
       <section className="grid gap-8 border-b border-white/10 pb-16 md:grid-cols-[.7fr_1.3fr]"><div><p className="eyebrow">Services</p><ul className="mt-4 space-y-2 text-gray-300">{project.services.map(service => <li key={service}>{service}</li>)}</ul></div>{project.challenge && <div><h2 className="section-title">The challenge</h2><p className="mt-5 max-w-2xl leading-8 text-[var(--muted)]">{project.challenge}</p></div>}</section>

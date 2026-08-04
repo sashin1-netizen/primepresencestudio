@@ -3,7 +3,7 @@ import "./globals.css";
 import { site } from "@/content/site";
 import { ownerContent } from "@/content/owner-content.mjs";
 import { selectOpenGraphArtwork } from "@/lib/content-selectors.mjs";
-import { privatePreviewEnabled } from "@/lib/preview";
+import { publicLaunchEnabled } from "@/lib/preview";
 import PreviewBanner from "@/components/PreviewBanner";
 import { contactDetails } from "@/content/site";
 
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description: site.tagline,
     ...(defaultArtwork ? { images: [defaultArtwork.src] } : {}),
   },
-  robots: privatePreviewEnabled ? { index: false, follow: false, noarchive: true, noimageindex: true } : { index: true, follow: true },
+  robots: publicLaunchEnabled ? { index: true, follow: true } : { index: false, follow: false, noarchive: true, noimageindex: true },
 };
 
 export const viewport: Viewport = {
@@ -43,7 +43,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const productionUrl = ownerContent.business.ownerConfirmed && ownerContent.business.canonicalUrl ? ownerContent.business.canonicalUrl : null;
+  const productionUrl = publicLaunchEnabled && ownerContent.business.ownerConfirmed && ownerContent.business.canonicalUrl ? ownerContent.business.canonicalUrl : null;
   const organisation = productionUrl ? { "@context": "https://schema.org", "@type": "ProfessionalService", name: site.name, url: productionUrl, description: site.description, ...(contactDetails.email ? { email: contactDetails.email } : {}), ...(contactDetails.phoneDisplay ? { telephone: contactDetails.phoneDisplay } : {}), areaServed: site.serviceArea || undefined } : null;
   return (
     <html lang="en-ZA">

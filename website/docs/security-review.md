@@ -1,21 +1,22 @@
-# Security review
+# Frontend security review
+
+Review date: 2026-08-04
 
 ## Confirmed controls
 
-- CSP: self default/base; no objects, frames or mixed content; no `unsafe-eval`; explicit self connect, self/blob media and self/mailto form action.
-- `frame-ancestors 'none'`, X-Frame-Options DENY, nosniff, strict-origin referrer, restricted permissions and production HSTS.
-- External WhatsApp links use `rel="noreferrer"`; messages are URL encoded and the international number is validated by tests.
-- No `dangerouslySetInnerHTML`, uploads, analytics, third-party scripts or frontend secrets.
-- Only `NEXT_PUBLIC_SITE_URL` is documented; it is public by design.
-- Contact data remains client-side and is not falsely reported as submitted.
-- Error UI does not expose stack details.
+- Public indexing is fail-closed: metadata, robots and sitemap remain private unless `PUBLIC_LAUNCH_APPROVED=true`, and that setting invokes the strict launch validator.
+- CSP contains no `unsafe-eval`; framing is denied; MIME sniffing, referrer, permissions and HSTS headers are constrained.
+- Draft projects, legal pages, review tooling, AI/portal prototypes, testimonials, people records, structured data and Open Graph records are excluded unless their publication gates pass.
+- Unapproved media masters are stored under `assets/nonpublic-intake`, outside the deployed `public` tree.
+- Contact fallbacks never simulate delivery and refuse unconfirmed destinations.
+- No frontend secrets, uploads, analytics, third-party scripts or `dangerouslySetInnerHTML` usage were found.
+- `npm audit --omit=dev` reports zero vulnerabilities after updating Next.js and its matching ESLint configuration to 16.3.0.
 
-## Residual risks
+## Residual constraints
 
-- CSP retains `script-src 'unsafe-inline'` for Next.js bootstrap compatibility. A nonce-based CSP is preferable only after end-to-end testing on the selected host.
-- No server form means no server validation/rate limiting, but also no server-side data store or endpoint attack surface.
-- Dependency vulnerability status was not refreshed because registry access is unreliable. Run `npm audit --omit=dev` or an approved lockfile scanner in connected CI; do not use forced fixes.
-- High-resolution unapproved media in `public` is directly addressable even when components do not reference it. Move masters outside the deployed directory after the owner completes the rights review.
-- Confirm production source maps remain disabled and verify response headers on the real host.
+- CSP retains `script-src 'unsafe-inline'` for Next.js bootstrap compatibility. Replacing this with host-generated nonces requires deployment-host integration and end-to-end verification.
+- Host-level access protection is mandatory for any internet-accessible private preview.
+- Production response headers, redirects and source-map behavior require verification on the selected host.
+- The standard multi-worker security workflow could not be used because this audit was required to remain in the current agent context; the frontend source, configuration, dependency and runtime checks were completed directly instead.
 
-Security score: **84/100**. No critical source vulnerability found; dependency, host-header and nonce checks remain release gates.
+No known critical or high-severity frontend issue remains open. This is an engineering assessment, not a compliance certification.

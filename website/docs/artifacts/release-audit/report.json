@@ -1,0 +1,98 @@
+[
+  {
+    "route": "/",
+    "width": 390,
+    "height": 844,
+    "title": "Prime Presence | Branding Studio South Africa",
+    "readyState": "complete",
+    "h1": 1,
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "styled": "rgb(5, 5, 5)",
+    "errorText": false
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "height": 900,
+    "title": "Prime Presence | Branding Studio South Africa",
+    "readyState": "complete",
+    "h1": 1,
+    "scrollWidth": 1425,
+    "clientWidth": 1425,
+    "styled": "rgb(5, 5, 5)",
+    "errorText": false
+  },
+  {
+    "route": "/services",
+    "width": 390,
+    "height": 844,
+    "title": "Branding & Website Services | Prime Presence",
+    "readyState": "complete",
+    "h1": 1,
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "styled": "rgb(5, 5, 5)",
+    "errorText": false
+  },
+  {
+    "route": "/services",
+    "width": 1440,
+    "height": 900,
+    "title": "Branding & Website Services | Prime Presence",
+    "readyState": "complete",
+    "h1": 1,
+    "scrollWidth": 1425,
+    "clientWidth": 1425,
+    "styled": "rgb(5, 5, 5)",
+    "errorText": false
+  },
+  {
+    "route": "/contact",
+    "width": 390,
+    "height": 844,
+    "title": "Start a Project | Prime Presence",
+    "readyState": "complete",
+    "h1": 1,
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "styled": "rgb(5, 5, 5)",
+    "errorText": false
+  },
+  {
+    "route": "/contact",
+    "width": 1440,
+    "height": 900,
+    "title": "Start a Project | Prime Presence",
+    "readyState": "complete",
+    "h1": 1,
+    "scrollWidth": 1425,
+    "clientWidth": 1425,
+    "styled": "rgb(5, 5, 5)",
+    "errorText": false
+  },
+  {
+    "route": "/work",
+    "width": 390,
+    "height": 844,
+    "title": "Selected Work | Prime Presence",
+    "readyState": "complete",
+    "h1": 1,
+    "scrollWidth": 390,
+    "clientWidth": 390,
+    "styled": "rgb(5, 5, 5)",
+    "errorText": false
+  },
+  {
+    "route": "/work",
+    "width": 1440,
+    "height": 900,
+    "title": "Selected Work | Prime Presence",
+    "readyState": "complete",
+    "h1": 1,
+    "scrollWidth": 1425,
+    "clientWidth": 1425,
+    "styled": "rgb(5, 5, 5)",
+    "errorText": false
+  }
+]

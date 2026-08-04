@@ -1,13 +1,21 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { onlyApproved } from "../lib/publication.mjs";
+import { canPublishPerson, canPublishProject, canPublishTestimonial, onlyPublished } from "../lib/publication.mjs";
+import { findPublicProject, projectSitemapPaths, projectStructuredData, publicStaticPaths, selectOpenGraphArtwork, selectPublicPeople, selectPublicTestimonials, selectRelatedProjects } from "../lib/content-selectors.mjs";
 
-test("excludes draft and missing publication states", () => {
-  const records = [{ slug: "draft", publicationStatus: "draft" }, { slug: "approved", publicationStatus: "approved" }, { slug: "missing" }];
-  assert.deepEqual(onlyApproved(records).map(record => record.slug), ["approved"]);
-});
+const project = (overrides = {}) => ({ slug: "real-work", clientName: "Owner supplied", services: [], summary: "Approved summary", publicationStatus: "published", approvalDate: "2026-08-04", mediaRightsConfirmed: true, clientPublicationApproved: true, publicationDate: "2026-08-04", ...overrides });
 
-test("does not mutate the source project collection", () => {
-  const records = [{ publicationStatus: "approved" }, { publicationStatus: "draft" }];
-  onlyApproved(records); assert.equal(records.length, 2);
+test("draft, review and approved-but-unpublished projects are public 404s", () => {
+  for (const publicationStatus of ["draft", "review", "approved", "rejected"]) assert.equal(findPublicProject([project({ publicationStatus })], "real-work"), undefined);
 });
+test("published project is publicly addressable and optional fields are optional", () => assert.equal(findPublicProject([project()], "real-work")?.slug, "real-work"));
+test("only valid published projects enter sitemap and structured data", () => { const records = [project(), project({ slug: "draft", publicationStatus: "draft" }), project({ slug: "rights-missing", mediaRightsConfirmed: false })]; assert.deepEqual(projectSitemapPaths(records), ["/work/real-work"]); assert.equal(projectStructuredData(records[1], "https://example.test"), null); assert.equal(projectStructuredData(records[0], "https://example.test")?.url, "https://example.test/work/real-work"); });
+test("related work excludes unpublished projects", () => { const current = project({ relatedProjects: ["related", "draft"] }); const related = project({ slug: "related" }); const draft = project({ slug: "draft", publicationStatus: "review" }); assert.deepEqual(selectRelatedProjects([current, related, draft], current).map(item => item.slug), ["related"]); });
+test("missing rights or client approval blocks project publication", () => { assert.equal(canPublishProject(project({ mediaRightsConfirmed: false })), false); assert.equal(canPublishProject(project({ clientPublicationApproved: false })), false); });
+test("project testimonial without consent blocks publication", () => { const testimonial={publicationStatus:"published",approvalDate:"2026-08-04",approvalConfirmed:true,consentDate:null,quote:"Quote"}; assert.equal(canPublishProject(project({testimonial})),false); });
+test("onlyPublished does not mutate source records", () => { const records = [project(), project({ publicationStatus: "draft" })]; assert.equal(onlyPublished(records).length, 1); assert.equal(records.length, 2); });
+
+test("people require published status, approval date and image rights", () => { const person = { id: "owner", publicationStatus: "published", approvalDate: "2026-08-04", imageRightsConfirmed: true }; assert.equal(canPublishPerson(person), true); assert.equal(selectPublicPeople([{ ...person, publicationStatus: "draft" }, { ...person, imageRightsConfirmed: false }]).length, 0); });
+test("testimonials require consent, approval and non-empty truthful quote", () => { const item = { id: "testimony", publicationStatus: "published", approvalDate: "2026-08-04", approvalConfirmed: true, consentDate: "2026-08-04", quote: "Owner supplied quote", projectReference: "real-work" }; assert.equal(canPublishTestimonial(item), true); assert.equal(selectPublicTestimonials([{ ...item, publicationStatus: "draft" }, { ...item, consentDate: null }, { ...item, quote: "" }]).length, 0); });
+test("unapproved legal routes stay out of sitemap", () => { const content={legal:{privacyApproval:false,termsApproval:false,approvalDate:null}}; assert.equal(publicStaticPaths(content).includes("/privacy"),false); assert.equal(publicStaticPaths(content).includes("/terms"),false); });
+test("Open Graph fallback never uses draft artwork", () => { const draft={src:"/draft.webp",filename:"draft.webp",alt:"Draft",width:1200,height:630,publicationStatus:"draft",approvalDate:null}; assert.equal(selectOpenGraphArtwork({defaultArtwork:draft,routeArtwork:[],projectArtwork:[]}),null); });

@@ -1,0 +1,2 @@
+import { privatePreviewEnabled } from "@/lib/preview";
+export default function PreviewBanner() { if (!privatePreviewEnabled) return null; return <aside aria-label="Private preview notice" className="relative z-[60] bg-[#f0d788] px-4 py-2 text-center text-sm font-bold text-[#050505]">Private preview — not approved for public launch. <a href="/review" className="underline underline-offset-4">Review readiness</a></aside>; }

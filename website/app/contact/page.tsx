@@ -1,3 +1,3 @@
-import type { Metadata } from "next"; import Navbar from "@/components/Navbar"; import Contact from "@/components/Contact"; import Footer from "@/components/Footer";
+import type { Metadata } from "next"; import Navbar from "@/components/Navbar"; import Footer from "@/components/Footer"; import Contact from "@/components/Contact"; import { contactDetails, site } from "@/content/site";
 export const metadata: Metadata = { title: "Start a Project", description: "Enquire about brand identity, logo design, brand reveal or premium website work with Prime Presence.", alternates: { canonical: "/contact" } };
-export default function Page(){ return <><Navbar/><main id="main-content" className="pt-20"><Contact headingLevel="h1"/></main><Footer/></> }
+export default function Page(){ return <><Navbar siteName={site.name}/><main id="main-content" className="pt-20"><Contact contact={contactDetails} headingLevel="h1"/></main><Footer/></> }

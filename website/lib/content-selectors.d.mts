@@ -1,0 +1,10 @@
+import type { ImageAsset, PersonRecord, ProjectRecord, TestimonialRecord, OwnerContent } from "../content/owner-content.mjs";
+export function selectPublicProjects(records: ProjectRecord[]): ProjectRecord[];
+export function selectPublicPeople(records: PersonRecord[]): PersonRecord[];
+export function selectPublicTestimonials(records: TestimonialRecord[]): TestimonialRecord[];
+export function findPublicProject(records: ProjectRecord[], slug: string): ProjectRecord | undefined;
+export function selectRelatedProjects(records: ProjectRecord[], project: ProjectRecord): ProjectRecord[];
+export function projectSitemapPaths(records: ProjectRecord[]): string[];
+export function publicStaticPaths(content: OwnerContent): string[];
+export function projectStructuredData(record: ProjectRecord, canonicalBase: string): Record<string, unknown> | null;
+export function selectOpenGraphArtwork(openGraph: OwnerContent["openGraph"], project?: ProjectRecord): ImageAsset | null;

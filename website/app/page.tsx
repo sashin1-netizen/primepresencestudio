@@ -12,13 +12,14 @@ import WebsiteShowcase from "../components/cinematic/WebsiteShowcase";
 import TrustPrinciples from "../components/cinematic/TrustPrinciples";
 import PremiumCTA from "../components/cinematic/PremiumCTA";
 import SectionDivider from "../components/cinematic/SectionDivider";
+import { contactDetails, site } from "@/content/site";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      <Navbar siteName={site.name} />
       <main id="main-content" className="overflow-hidden bg-[#050505] text-white">
-        <Hero />
+        <Hero location={site.location} />
         <StoryPanel />
         <SectionDivider />
         <Services />
@@ -29,7 +30,7 @@ export default function Home() {
         <TrustPrinciples />
         <FAQ />
         <PremiumCTA />
-        <Contact />
+        <Contact contact={contactDetails} />
       </main>
       <Footer />
     </>

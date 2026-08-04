@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { services } from "@/content/site";
+import { services } from "@/content/services";
 import RevealSection from "./motion/RevealSection";
 
 export default function Services() {

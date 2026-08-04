@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-08-04T00:00:00.000Z",
+  "tests": [
+    { "profile": "Android Chrome", "device": "", "os": "", "browser": "Chrome", "browserVersion": "", "viewport": "", "tester": "", "date": null, "routesTested": [], "result": "not-run", "issues": [], "screenshotPath": "", "approvalStatus": "pending" },
+    { "profile": "iPhone Safari", "device": "", "os": "", "browser": "Safari", "browserVersion": "", "viewport": "", "tester": "", "date": null, "routesTested": [], "result": "not-run", "issues": [], "screenshotPath": "", "approvalStatus": "pending" },
+    { "profile": "Windows Chrome", "device": "", "os": "Windows", "browser": "Chrome", "browserVersion": "", "viewport": "", "tester": "", "date": null, "routesTested": [], "result": "not-run", "issues": [], "screenshotPath": "", "approvalStatus": "pending" },
+    { "profile": "Windows Edge", "device": "", "os": "Windows", "browser": "Edge", "browserVersion": "", "viewport": "", "tester": "", "date": null, "routesTested": [], "result": "not-run", "issues": [], "screenshotPath": "", "approvalStatus": "pending" },
+    { "profile": "Tablet portrait", "device": "", "os": "", "browser": "", "browserVersion": "", "viewport": "portrait", "tester": "", "date": null, "routesTested": [], "result": "not-run", "issues": [], "screenshotPath": "", "approvalStatus": "pending" },
+    { "profile": "Tablet landscape", "device": "", "os": "", "browser": "", "browserVersion": "", "viewport": "landscape", "tester": "", "date": null, "routesTested": [], "result": "not-run", "issues": [], "screenshotPath": "", "approvalStatus": "pending" },
+    { "profile": "Reduced motion", "device": "", "os": "", "browser": "", "browserVersion": "", "viewport": "", "tester": "", "date": null, "routesTested": [], "result": "not-run", "issues": [], "screenshotPath": "", "approvalStatus": "pending" },
+    { "profile": "Slow connection", "device": "", "os": "", "browser": "", "browserVersion": "", "viewport": "", "tester": "", "date": null, "routesTested": [], "result": "not-run", "issues": [], "screenshotPath": "", "approvalStatus": "pending" },
+    { "profile": "Keyboard-only", "device": "", "os": "", "browser": "", "browserVersion": "", "viewport": "", "tester": "", "date": null, "routesTested": [], "result": "not-run", "issues": [], "screenshotPath": "", "approvalStatus": "pending" },
+    { "profile": "200% zoom", "device": "", "os": "", "browser": "", "browserVersion": "", "viewport": "", "tester": "", "date": null, "routesTested": [], "result": "not-run", "issues": [], "screenshotPath": "", "approvalStatus": "pending" }
+  ]
+}

@@ -1,0 +1,5 @@
+# Owner asset intake workflow
+
+Register logo, favicon, Open Graph art, people portraits, galleries, videos/posters, website previews, comparisons, client logos, testimonial evidence and legal documents in `content/owner-config.json` before use. Each public media record needs a unique asset ID and filename, public-relative source, type, dimensions/aspect ratio where applicable, byte size, alt text or decorative flag, copyright holder, source/licence, permission status, restrictions/expiry, route usage, publication status and approval date. Videos require a poster and captions where speech/information is present.
+
+Place files in the appropriate `public` directory only after provenance review. Run `npm run media:validate` and `npm run media:report`. Duplicate names, broken references, unsupported formats, oversize files, missing alt text/posters, missing rights and unsafe published records block validation. The preserved `public/videos/hero-loop.mp4` is excluded until separately approved.

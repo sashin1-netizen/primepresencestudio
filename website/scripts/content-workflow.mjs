@@ -8,7 +8,7 @@ const mode = process.argv[2] || "validate";
 const publicRoot = path.resolve("public");
 const assetExists = src => { if (!src?.startsWith("/") || src.startsWith("//")) return false; const target = path.resolve(publicRoot, `.${src}`); return target.startsWith(publicRoot) && fs.existsSync(target); };
 const issues = validateOwnerContent(ownerContent, { assetExists });
-const accidentalPublication = issues.filter(item => ["invalid_publication_status", "project_publication_blocked", "founders_publication_blocked", "team_publication_blocked", "testimonials_publication_blocked", "missing_media_rights", "missing_case_study_evidence", "missing_asset", "missing_alt", "unsupported_image", "unsupported_video", "oversized_image", "oversized_video", "missing_video_poster", "duplicate_slug", "duplicate_filename"].includes(item.code));
+const accidentalPublication = issues.filter(item => ["invalid_publication_status", "project_publication_blocked", "founders_publication_blocked", "team_publication_blocked", "testimonials_publication_blocked", "missing_media_rights", "missing_case_study_evidence", "missing_asset", "missing_alt", "invalid_dimensions", "unsupported_image", "unsupported_video", "oversized_image", "oversized_video", "missing_video_poster", "duplicate_slug", "duplicate_filename", "invalid_og_dimensions", "invalid_og_format", "invalid_og_size"].includes(item.code));
 
 if (mode === "validate") {
   printIssues(issues);

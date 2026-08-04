@@ -15,7 +15,14 @@
     "launch:validate": "node scripts/launch-validate.mjs",
     "preview:validate": "node scripts/launch-validate.mjs --preview",
     "preview:verify": "node scripts/verify-preview.mjs",
-    "lighthouse:check": "node scripts/check-lighthouse.mjs"
+    "lighthouse:check": "node scripts/check-lighthouse.mjs",
+    "lighthouse:report": "node scripts/lighthouse-report.mjs",
+    "owner:setup": "node scripts/owner-workflow.mjs setup",
+    "owner:validate": "node scripts/owner-workflow.mjs validate",
+    "owner:report": "node scripts/owner-workflow.mjs report",
+    "media:validate": "node scripts/media-workflow.mjs validate",
+    "media:report": "node scripts/media-workflow.mjs report",
+    "device:report": "node scripts/device-report.mjs"
   },
   "engines": { "node": ">=20.9.0" },
   "dependencies": {

@@ -40,3 +40,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# owner setup backups (local, may contain public configuration under review)
+/content/owner-config.json.backup-*

@@ -1,21 +1,29 @@
-# Content required before launch
+# Owner content required
 
-The site deliberately does not invent business facts. The owner must approve or provide:
+Nothing below may be invented. `P0` blocks public launch; `P1` materially affects conversion; `P2` is useful after launch.
 
-- Confirm the public brand name is **Prime Presence** (not “Prime Presence Atelier”) and confirm whether any trademark symbol is registered and appropriate.
-- Confirm `hello@primepresence@gmail.com`, `+27 71 154 7161`, and Monday–Friday 09:00–17:00 SAST.
-- Confirm the production domain and set `NEXT_PUBLIC_SITE_URL`; the current SEO fallback is `https://primepresence.co.za` and must not be treated as ownership confirmation.
-- Provide approved portfolio projects: client/project name, industry, services, challenge, direction, deliverables, truthful outcome, approved imagery/video, alt text, and publication consent.
-- Populate `content/projects.ts` only after those facts are approved. Every published record must set `approvedForPublication: true`; optional fields remain hidden when absent.
-- Provide verified testimonials and explicit permission to publish names, roles, companies and wording. None are displayed now.
-- Confirm service scope, exclusions, indicative budget bands, lead times, revision policy and handover format.
-- Provide approved founder/studio story, team information and photography rights.
-- Confirm licensed ownership/use rights for every file in `public/images/real` and `public/videos/real`.
-- Confirm that the new `hero-studio-1920.webp`, `mockup-01-1600.webp`, and `process-01-1600.webp` derivatives may be published; they inherit the rights status of their source JPEGs.
-- Provide social profile URLs if they should be published.
-- Have South African counsel/owner review the privacy policy and terms; add the responsible party/legal entity details if required.
-- Decide on the production form backend and spam protection. The current form safely prepares an email in the visitor’s mail application and stores nothing.
-- Decide on privacy-conscious analytics. No analytics or tracking is currently installed.
-- Supply an approved Open Graph image (recommended 1200×630) and final favicon/brand marks.
+| Priority | Content needed | Format and length | Approval | Page / purpose |
+|---|---|---|---|---|
+| P0 | Public and legal business name | Exact spelling plus legal contracting entity | Owner + legal | Global, Privacy, Terms; contract confidence |
+| P0 | Production domain | Confirm HTTPS origin and www/non-www choice | Owner | Canonicals, sitemap, robots, schema, social cards |
+| P0 | Contact facts | Confirm `hello@primepresence@gmail.com`, `+27 71 154 7161`, hours and monitoring owner | Owner | Header, footer, contact; successful enquiry |
+| P0 | Media-rights register | For every deployed image/video: creator, source, licence/assignment, client consent, territory/expiry, approval date | Owner + rights holder | Homepage and future work; lawful publication |
+| P0 | Privacy and Terms | Reviewed final text, responsible legal entity and contact | Legal | Privacy/Terms; lawful launch |
+| P0 | Open Graph artwork | 1200×630 WebP/JPEG, ≤300 KB, safe-area text, alt text | Brand owner + media rights | Social sharing credibility |
+| P1 | First approved case study | Client name; industry; 3–6 services; 40–70 word summary; 80–150 word challenge/strategy/execution; deliverables; only evidenced results | Client publication approval + legal | Work/detail; proof and premium justification |
+| P1 | Case-study media | Cover 1600×1200; gallery 1600 px long edge; WebP/AVIF ≤200 KB each; video ≤5 MB with poster/captions | Client + media rights | Work/detail; visual proof |
+| P1 | Founder context | Name, role, 80–120 word biography, 3–5 relevant experience points, 40–70 word approach, location wording, approved portrait 1200×1500 | Founder + media rights | About; human trust |
+| P1 | Team/collaborator context | Name, role, 50–90 word bio, approved image/social link; identify employment/collaboration accurately | Person approval + media rights | About; delivery confidence |
+| P1 | Service operating facts | Ideal fit, exclusions, typical scope, owner-approved lead-time range, revisions, handover/usage rights, support boundary | Owner + legal where contractual | Services/FAQ/contact; qualification |
+| P1 | Investment guidance | Confirm or replace R10k–R25k, R25k–R50k, R50k+ bands and whether to show starting investment | Owner | Contact; lead quality and premium fit |
+| P1 | Testimonials | Exact quote, name, role/company, related project, written publication permission | Client approval | About/work; reassurance |
+| P2 | Social links | Approved HTTPS profile URL and label | Owner | Footer/About; verification |
+| P2 | Credentials | Exact title, issuer, evidence URL, valid date/status | Owner + issuer terms | About; verified authority only |
+| P2 | Insights | 700–1,200 word original article, author, review date, unique social artwork | Author/owner | Insights; expertise and organic acquisition |
 
-Development-only or unpublished content must never be presented as client work.
+## Data-entry rules
+
+- Projects use `content/projects.ts`; keep `publicationStatus: "draft"` until every fact and asset is approved. Only `approved` records render, route or enter the sitemap.
+- Founder, team, testimonial and credential proof uses `content/proof.ts`; unapproved entries remain drafts and hidden.
+- The WebP derivatives inherit the rights status of their source JPEGs.
+- Never publish an address, founding year, registration number, award, rating, result, credential or client relationship without evidence.

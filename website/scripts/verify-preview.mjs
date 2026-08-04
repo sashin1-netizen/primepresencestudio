@@ -1,8 +1,8 @@
 import { spawn } from "node:child_process";
-const npm = process.platform === "win32" ? "npm.cmd" : "npm";
 const env = { ...process.env, PRIVATE_PREVIEW_ENABLED: "true", PRIVATE_PREVIEW_INCLUDE_DRAFTS: "false", PUBLIC_LAUNCH_APPROVED: "false" };
-const run = args => new Promise((resolve, reject) => { const child = spawn(npm, args, { env, stdio: "inherit", shell: process.platform === "win32" }); child.on("exit", code => code === 0 ? resolve() : reject(new Error(`${args.join(" ")} exited ${code}`))); });
-await run(["run", "build"]);
+const runNode = args => new Promise((resolve, reject) => { const child = spawn(process.execPath, args, { env, stdio: "inherit", shell: false }); child.on("exit", code => code === 0 ? resolve() : reject(new Error(`${args.join(" ")} exited ${code}`))); });
+await runNode(["scripts/build-safety.mjs"]);
+await runNode(["node_modules/next/dist/bin/next", "build"]);
 const server = spawn(process.execPath, ["node_modules/next/dist/bin/next", "start", "-p", "3120"], { env, stdio: "ignore", shell: false });
 try {
   let ready = false;

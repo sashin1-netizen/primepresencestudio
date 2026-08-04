@@ -1,3 +1,5 @@
+import { buildWhatsAppUrl } from "@/lib/contact-url.mjs";
+
 export const site = {
   name: "Prime Presence",
   tagline: "Designed to Be Remembered.",
@@ -20,4 +22,4 @@ export const services = [
 ] as const;
 
 export const whatsappUrl = (message: string) =>
-  `https://wa.me/${site.phoneInternational}?text=${encodeURIComponent(message)}`;
+  buildWhatsAppUrl(site.phoneInternational, message);

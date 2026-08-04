@@ -1,0 +1,4 @@
+import Image from "next/image";
+import type { Project } from "@/content/projects";
+type Comparison = NonNullable<Project["beforeAfter"]>;
+export default function BeforeAfter({ comparison }: { comparison: Comparison }) { return <figure><div className="grid gap-3 md:grid-cols-2">{[["Before", comparison.before], ["After", comparison.after]].map(([phase, image]) => { const item = image as Comparison["before"]; return <div key={String(phase)} className="overflow-hidden rounded-[var(--radius-md)] border border-white/10"><div className="border-b border-white/10 bg-[var(--surface)] px-4 py-3 text-xs font-semibold uppercase tracking-[.2em] text-[var(--muted)]">{phase as string}</div><Image src={item.src} alt={item.alt} width={item.width} height={item.height} sizes="(min-width:768px) 50vw, 100vw" className="h-auto w-full" /></div> })}</div><figcaption className="mt-3 text-sm text-[var(--muted)]">{comparison.label}</figcaption></figure> }

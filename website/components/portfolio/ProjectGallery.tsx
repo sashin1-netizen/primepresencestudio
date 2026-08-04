@@ -1,0 +1,3 @@
+import Image from "next/image";
+import type { ProjectImage } from "@/content/projects";
+export default function ProjectGallery({ images }: { images: ProjectImage[] }) { return <div className="grid gap-4 md:grid-cols-2">{images.map((image, index) => <figure key={image.src} className={`relative overflow-hidden rounded-[var(--radius-md)] border border-white/10 bg-[var(--surface)] ${index % 3 === 0 ? "md:col-span-2 aspect-[16/9]" : "aspect-[4/3]"}`}><Image src={image.src} alt={image.alt} fill sizes={index % 3 === 0 ? "100vw" : "(min-width:768px) 50vw, 100vw"} className="object-cover" /></figure>)}</div> }

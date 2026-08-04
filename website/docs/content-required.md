@@ -23,7 +23,8 @@ Nothing below may be invented. `P0` blocks public launch; `P1` materially affect
 
 ## Data-entry rules
 
-- Projects use `content/projects.ts`; keep `publicationStatus: "draft"` until every fact and asset is approved. Only `approved` records render, route or enter the sitemap.
-- Founder, team, testimonial and credential proof uses `content/proof.ts`; unapproved entries remain drafts and hidden.
+- Owner-controlled records enter through `content/owner-content.mjs`; `content/projects.ts` and `content/proof.ts` are public adapters and should not be edited for intake.
+- Use `draft` while entering, `review` during fact/right checks, `approved` after approval, and `published` only after public release is authorised. Only fully gated `published` records render, route, enter metadata/structured data or enter the sitemap.
+- Founder, team and testimonial records remain hidden unless published with their applicable rights or consent evidence.
 - The WebP derivatives inherit the rights status of their source JPEGs.
 - Never publish an address, founding year, registration number, award, rating, result, credential or client relationship without evidence.

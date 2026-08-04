@@ -3,7 +3,7 @@
 ## Publication control
 
 - Internal slug:
-- Publication status: draft / approved
+- Publication status: draft / review / approved / published / rejected
 - Client publication approval file/date:
 - Fact-check owner/date:
 - Media-rights approval file/date:

@@ -1,6 +1,12 @@
 name: Publish Atelier to gh-pages
 
 on:
+  push:
+    branches:
+      - agent/finish-prime-presence-atelier
+    paths:
+      - "website/**"
+      - ".github/workflows/website-gh-pages-publish.yml"
   pull_request:
     branches:
       - codex/website-cinematic-production
@@ -13,11 +19,12 @@ permissions:
   contents: write
 
 concurrency:
-  group: prime-presence-gh-pages-publish
+  group: prime-presence-gh-pages-publish-${{ github.event_name }}
   cancel-in-progress: true
 
 jobs:
   publish:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout preview branch

@@ -62,7 +62,7 @@ jobs:
       - name: Capture desktop and mobile pages
         run: |
           mkdir -p visual-qa
-          for route in "home:/" "services:/services" "connect:/connect" "contact:/contact"; do
+          for route in "home:/" "services:/services" "connect:/connect" "work:/work" "process:/process" "about:/about" "contact:/contact"; do
             name="${route%%:*}"
             path="${route#*:}"
             npx playwright screenshot --browser chromium --full-page --viewport-size="1440,900" "http://127.0.0.1:3000${path}" "visual-qa/${name}-desktop.png"

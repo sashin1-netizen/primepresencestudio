@@ -8,10 +8,10 @@
     "telephoneConfirmed": false,
     "whatsapp": null,
     "whatsappConfirmed": false,
-    "location": "South Africa",
-    "locationConfirmed": false,
-    "serviceArea": "",
-    "serviceAreaConfirmed": false,
+    "location": "Durban, KwaZulu-Natal, South Africa",
+    "locationConfirmed": true,
+    "serviceArea": "South Africa and worldwide remote delivery",
+    "serviceAreaConfirmed": true,
     "hours": "Monday–Friday, 09:00–17:00 SAST",
     "socialLinks": [],
     "copyrightHolder": "",
@@ -24,8 +24,8 @@
     "approvalDate": null
   },
   "brand": {
-    "tagline": "Designed to Be Remembered.",
-    "description": "Prime Presence Atelier is a South African branding and digital experience studio creating memorable identities, brand reveals and premium websites."
+    "tagline": "Designed to Be Remembered.™",
+    "description": "Prime Presence Atelier is a founder-led creative atelier in Durban creating premium brand identities, focused digital experiences and launch assets for startups, owner-led businesses and professionals."
   },
   "founders": [],
   "team": [],

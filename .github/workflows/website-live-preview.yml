@@ -1,6 +1,12 @@
 name: Prime Presence Live Preview
 
 on:
+  pull_request:
+    branches:
+      - codex/website-cinematic-production
+    paths:
+      - "website/**"
+      - ".github/workflows/website-live-preview.yml"
   push:
     branches:
       - agent/finish-prime-presence-atelier

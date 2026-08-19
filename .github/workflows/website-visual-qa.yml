@@ -1,6 +1,10 @@
 name: Website Visual QA
 
 on:
+  pull_request:
+    paths:
+      - "website/**"
+      - ".github/workflows/website-visual-qa.yml"
   push:
     branches:
       - "agent/finish-prime-presence-atelier"

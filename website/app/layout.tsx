@@ -12,12 +12,15 @@ const defaultArtwork = selectOpenGraphArtwork(ownerContent.openGraph);
 
 export const metadata: Metadata = {
   metadataBase: new URL(canonicalBase),
-  title: { default: `${site.name} | Branding Studio South Africa`, template: `%s | ${site.name}` },
+  title: {
+    default: `${site.name} | Branding & Digital Presence in Durban`,
+    template: `%s | ${site.name}`,
+  },
   description: site.description,
   alternates: { canonical: "/" },
   openGraph: {
     title: site.name,
-    description: site.tagline,
+    description: site.description,
     type: "website",
     locale: "en_ZA",
     ...(defaultArtwork ? { images: [{ url: defaultArtwork.src, width: defaultArtwork.width, height: defaultArtwork.height, alt: defaultArtwork.alt }] } : {}),
@@ -25,7 +28,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: site.name,
-    description: site.tagline,
+    description: site.description,
     ...(defaultArtwork ? { images: [defaultArtwork.src] } : {}),
   },
   robots: publicLaunchEnabled ? { index: true, follow: true } : { index: false, follow: false, noarchive: true, noimageindex: true },
@@ -38,13 +41,22 @@ export const viewport: Viewport = {
   themeColor: "#050505",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const productionUrl = publicLaunchEnabled && ownerContent.business.ownerConfirmed && ownerContent.business.canonicalUrl ? ownerContent.business.canonicalUrl : null;
-  const organisation = productionUrl ? { "@context": "https://schema.org", "@type": "ProfessionalService", name: site.name, url: productionUrl, description: site.description, ...(contactDetails.email ? { email: contactDetails.email } : {}), ...(contactDetails.phoneDisplay ? { telephone: contactDetails.phoneDisplay } : {}), areaServed: site.serviceArea || undefined } : null;
+  const organisation = productionUrl
+    ? {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        name: site.name,
+        url: productionUrl,
+        description: site.description,
+        ...(contactDetails.email ? { email: contactDetails.email } : {}),
+        ...(contactDetails.phoneDisplay ? { telephone: contactDetails.phoneDisplay } : {}),
+        areaServed: site.serviceArea || undefined,
+        address: site.location ? { "@type": "PostalAddress", addressLocality: "Durban", addressRegion: "KwaZulu-Natal", addressCountry: "ZA" } : undefined,
+      }
+    : null;
+
   return (
     <html lang="en-ZA">
       <body className="antialiased bg-[#050505] text-white">

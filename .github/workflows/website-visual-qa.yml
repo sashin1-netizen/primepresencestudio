@@ -39,7 +39,7 @@ jobs:
       - name: Install browser tooling
         run: |
           npm install --no-save --package-lock=false playwright@1.55.0
-          npx playwright install --with-deps chromium
+          npx playwright install chromium
 
       - name: Build private preview
         run: npm run build

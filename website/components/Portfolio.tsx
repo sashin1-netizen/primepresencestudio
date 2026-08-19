@@ -25,7 +25,7 @@ export default function Portfolio() {
               We would rather show what is real than manufacture a case study.
             </h2>
             <p className="mt-5 max-w-xl leading-8 text-gray-300">
-              Client work is published only when the work, facts and permission are approved. Until then, the studio's own brand and products carry the proof burden.
+              Client work is published only when the work, facts and permission are approved. Until then, the studio&apos;s own brand and products carry the proof burden.
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">

@@ -15,7 +15,7 @@ export default function StoryPanel() {
             </div>
             <div className="rounded-[1.5rem] border border-white/10 bg-black/30 p-8 text-sm leading-8 text-gray-300">
               <p>
-                Prime Presence connects positioning, identity and digital execution so the first impression feels credible—and the experience that follows keeps that promise.
+                Prime Presence Atelier connects positioning, identity and digital execution so the first impression feels credible—and the experience that follows keeps that promise.
               </p>
               <Link href="/process" className="mt-6 inline-flex text-sm font-semibold uppercase tracking-[0.25em] text-[#C8A348] hover:text-[#F6E7A3]">
                 See the process →

@@ -2,37 +2,31 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import StoryPanel from "../components/StoryPanel";
 import Services from "../components/Services";
+import WebsiteShowcase from "../components/cinematic/WebsiteShowcase";
 import Portfolio from "../components/Portfolio";
 import Process from "../components/Process";
-import FAQ from "../components/FAQ";
-import Contact from "../components/Contact";
-import Footer from "../components/Footer";
-import BrandRevealPanel from "../components/cinematic/BrandRevealPanel";
-import WebsiteShowcase from "../components/cinematic/WebsiteShowcase";
-import TrustPrinciples from "../components/cinematic/TrustPrinciples";
 import PremiumCTA from "../components/cinematic/PremiumCTA";
-import SectionDivider from "../components/cinematic/SectionDivider";
-import { contactDetails, site } from "@/content/site";
+import Footer from "../components/Footer";
+import { site } from "@/content/site";
 import { publishedMediaById } from "@/content/media";
 
 export default function Home() {
   const heroMedia = publishedMediaById("home-hero");
+
   return (
     <>
       <Navbar siteName={site.name} />
       <main id="main-content" className="overflow-hidden bg-[#050505] text-white">
-        <Hero location={site.location} media={heroMedia ? { src: heroMedia.src, alt: heroMedia.alt, decorative: heroMedia.decorative } : undefined} />
+        <Hero
+          location={site.location}
+          media={heroMedia ? { src: heroMedia.src, alt: heroMedia.alt, decorative: heroMedia.decorative } : undefined}
+        />
         <StoryPanel />
-        <SectionDivider />
         <Services />
-        <BrandRevealPanel />
-        <Portfolio />
         <WebsiteShowcase />
+        <Portfolio />
         <Process />
-        <TrustPrinciples />
-        <FAQ />
         <PremiumCTA />
-        <Contact contact={contactDetails} />
       </main>
       <Footer />
     </>

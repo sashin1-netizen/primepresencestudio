@@ -4,6 +4,8 @@ import PageShell from "@/components/PageShell";
 import ProjectShowcase from "@/components/portfolio/ProjectShowcase";
 import { publishedProjects } from "@/content/projects";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export const metadata = {
   title: "Selected Work",
   description: "Approved client work and owned proof from Prime Presence Atelier, including the studio identity and Prime Presence Connect.",
@@ -33,22 +35,12 @@ const ownedProof = [
 
 export default function Page() {
   return (
-    <PageShell
-      eyebrow="Work"
-      title="Proof should be specific."
-      intro="The archive separates what is genuinely ours, what is approved for publication and what is still in development. No invented case studies and no borrowed credibility."
-    >
+    <PageShell eyebrow="Work" title="Proof should be specific." intro="The archive separates what is genuinely ours, what is approved for publication and what is still in development. No invented case studies and no borrowed credibility.">
       <div className="mb-14 grid gap-6 md:grid-cols-2">
         {ownedProof.map((item) => (
           <article key={item.title} className="group overflow-hidden border border-white/10 bg-[#080808]">
             <div className="relative min-h-[260px] overflow-hidden sm:min-h-[340px]">
-              <Image
-                src={item.image}
-                alt={item.alt}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-center transition duration-700 group-hover:scale-[1.025]"
-              />
+              <Image src={`${basePath}${item.image}`} alt={item.alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-center transition duration-700 group-hover:scale-[1.025]" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/15 to-transparent" />
               <p className="eyebrow absolute bottom-5 left-6">{item.label}</p>
             </div>
@@ -70,13 +62,7 @@ export default function Page() {
         <div className="overflow-hidden border border-[#C8A348]/20 bg-[#C8A348]/5">
           <div className="grid lg:grid-cols-[.9fr_1.1fr]">
             <div className="relative min-h-[260px] lg:min-h-[380px]">
-              <Image
-                src="/media/ppa-studio-scene.webp"
-                alt="Prime Presence Atelier creative studio environment"
-                fill
-                sizes="(max-width: 1024px) 100vw, 45vw"
-                className="object-cover object-center"
-              />
+              <Image src={`${basePath}/media/ppa-studio-scene.webp`} alt="Prime Presence Atelier creative studio environment" fill sizes="(max-width: 1024px) 100vw, 45vw" className="object-cover object-center" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#090806]/65" />
             </div>
             <div className="p-7 sm:p-10 lg:flex lg:flex-col lg:justify-center">

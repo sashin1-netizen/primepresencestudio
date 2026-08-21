@@ -69,25 +69,39 @@ export default function AtelierHomePages({ location }: { location: string }) {
         </div>
       </section>
 
-      <section className="relative overflow-hidden px-5 py-20 sm:px-10 sm:py-28 lg:px-16 lg:py-32">
-        <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_80%_30%,rgba(201,154,60,.09),transparent_28%)]" />
-        <div className="relative mx-auto grid max-w-[1380px] gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:gap-20">
-          <div>
-            <div className="inline-flex items-center gap-3 border border-[#c99a3c]/30 bg-[#c99a3c]/[.05] px-3.5 py-2"><span className="h-1.5 w-1.5 rounded-full bg-[#d8ad55] shadow-[0_0_12px_rgba(216,173,85,.65)]"/><span className="text-[8px] font-bold uppercase tracking-[.2em] text-[#d8ad55]">Coming Soon</span></div>
-            <p className="eyebrow mt-6">Prime Presence Connect™</p>
-            <h2 className="premium-title mt-5">Your presence,<span className="block italic text-[#d8ad55]">carried digitally.</span></h2>
-            <p className="mt-6 max-w-2xl text-[15px] leading-7 text-[#c4bbaf] sm:text-lg sm:leading-8">Connect is an upcoming mobile-first digital introduction experience. We are still crafting and testing it, so it is not available for clients yet.</p>
-            <Link href="/connect" className="mt-8 inline-flex min-h-11 items-center gap-5 border-b border-[#c99a3c]/55 text-[9px] font-bold uppercase tracking-[.17em] text-[#e0b75f]">Preview What’s Coming <span>→</span></Link>
-          </div>
-
-          <div className="relative min-h-[280px] overflow-hidden border border-[#c99a3c]/18 bg-[#070605] p-7 shadow-[0_28px_80px_rgba(0,0,0,.35)] sm:min-h-[340px] sm:p-10">
-            <div aria-hidden="true" className="absolute -right-16 -top-20 h-56 w-56 rounded-full border border-[#c99a3c]/12" />
-            <div aria-hidden="true" className="absolute -bottom-28 -left-16 h-72 w-72 rounded-full border border-white/[.045]" />
-            <div className="relative flex min-h-[226px] flex-col justify-between sm:min-h-[260px]">
-              <div><p className="text-[8px] font-bold uppercase tracking-[.25em] text-[#c99a3c]">Prime Presence</p><p className="mt-3 font-[family-name:var(--font-cormorant)] text-4xl text-[#f3ece1] sm:text-5xl">Connect™</p></div>
-              <div className="h-px w-full bg-[linear-gradient(90deg,#c99a3c,rgba(201,154,60,.15),transparent)]" />
-              <div className="flex items-end justify-between gap-5"><p className="max-w-[17rem] text-sm leading-6 text-white/42">A new Prime Presence product, currently in development.</p><span className="font-[family-name:var(--font-cormorant)] text-5xl italic text-[#c99a3c]/28 sm:text-6xl">Soon.</span></div>
+      <section className="relative overflow-hidden border-b border-white/[.07] px-5 py-20 sm:px-10 sm:py-28 lg:px-16 lg:py-32">
+        <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_84%_24%,rgba(201,154,60,.13),transparent_24%),linear-gradient(180deg,#050504,#080603_46%,#040403)]" />
+        <div className="relative mx-auto max-w-[1380px]">
+          <div className="grid gap-10 lg:grid-cols-[.78fr_1.22fr] lg:items-center lg:gap-20">
+            <div>
+              <div className="inline-flex items-center gap-3 border border-[#c99a3c]/30 bg-[#c99a3c]/[.05] px-3.5 py-2"><span className="h-1.5 w-1.5 rounded-full bg-[#d8ad55] shadow-[0_0_12px_rgba(216,173,85,.65)]"/><span className="text-[8px] font-bold uppercase tracking-[.2em] text-[#d8ad55]">In Development</span></div>
+              <p className="eyebrow mt-6">Prime Presence Connect™</p>
+              <h2 className="mt-5 max-w-[8ch] font-[family-name:var(--font-cormorant)] text-[clamp(3rem,7vw,6rem)] font-medium leading-[.88] tracking-[-.045em] text-[#f4eee3]">Something more <span className="italic text-[#d8ad55]">immediate.</span></h2>
+              <p className="mt-6 max-w-xl text-[15px] leading-7 text-[#bdb3a7] sm:text-lg sm:leading-8">A new way to carry your presence beyond the website is taking shape. We’re keeping the details deliberately close until it is ready.</p>
+              <Link href="/connect" className="mt-8 inline-flex min-h-11 items-center gap-5 border-b border-[#c99a3c]/55 text-[9px] font-bold uppercase tracking-[.17em] text-[#e0b75f]">Enter the Preview <span>→</span></Link>
             </div>
+
+            <Link href="/connect" aria-label="Preview Prime Presence Connect coming soon" className="group relative block overflow-hidden border border-[#c99a3c]/20 bg-[#080705] shadow-[0_32px_90px_rgba(0,0,0,.42)]">
+              <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(135deg,rgba(201,154,60,.12),transparent_30%,rgba(0,0,0,.34)_72%)]" />
+              <div aria-hidden="true" className="absolute -right-20 -top-20 h-56 w-56 rounded-full border border-[#c99a3c]/12 transition-transform duration-1000 group-hover:scale-110" />
+              <div aria-hidden="true" className="absolute -bottom-28 left-8 h-72 w-72 rounded-full border border-white/[.04]" />
+              <div className="relative min-h-[300px] p-7 sm:min-h-[360px] sm:p-10 lg:min-h-[420px] lg:p-12">
+                <div className="flex items-start justify-between gap-4">
+                  <div><p className="text-[8px] font-bold uppercase tracking-[.25em] text-[#c99a3c]">Project 03</p><p className="mt-3 font-[family-name:var(--font-cormorant)] text-3xl text-[#f3ece1] sm:text-4xl">Connect™</p></div>
+                  <span className="shrink-0 border border-[#c99a3c]/25 px-2.5 py-1.5 text-[7px] font-bold uppercase tracking-[.18em] text-[#d8ad55]">Coming Soon</span>
+                </div>
+
+                <div className="mt-12 max-w-md sm:mt-16">
+                  <p className="font-[family-name:var(--font-cormorant)] text-[clamp(2.25rem,6vw,4.7rem)] leading-[.9] tracking-[-.035em] text-[#f0e9de]">Not a card.<br/><span className="italic text-[#d3a54b]">Not a website.</span></p>
+                  <p className="mt-5 max-w-sm text-sm leading-6 text-white/48 sm:text-base sm:leading-7">Designed for the moment after someone asks, “How do I reach you?”</p>
+                </div>
+
+                <div className="mt-10 flex items-end justify-between gap-5 border-t border-white/[.08] pt-5 sm:mt-12">
+                  <p className="max-w-[15rem] text-[8px] font-bold uppercase tracking-[.2em] text-white/34">A Prime Presence product · Release date to be announced</p>
+                  <span className="shrink-0 text-xl text-[#d8ad55] transition-transform duration-500 group-hover:translate-x-1">↗</span>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </section>

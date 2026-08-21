@@ -1,51 +1,21 @@
 import PageShell from "@/components/PageShell";
 
 const steps = [
-  ["Qualification", "Confirm the business need, decision-maker, timing, budget readiness and whether the project fits the atelier."],
-  ["Intake", "Collect the goals, audience, exact public information, assets, licences, deadline and the person who can approve the work."],
-  ["Scope & deposit", "Document inclusions, exclusions, price, revision allowance, timeline and payment before production starts."],
-  ["Direction", "Define the message, visual territory and success criteria the work must satisfy before expanding into full production."],
-  ["Production", "Build the agreed identity, Connect profile, launch assets or website with version control and bounded AI-assisted support."],
-  ["Internal QA", "Check spelling, links, dimensions, responsiveness, accessibility basics, claims, licences and publication state before client review."],
-  ["Controlled review", "Send the agreed preview, collect feedback in one channel and apply only the included revision rounds."],
-  ["Approval & handover", "Record final approval, collect the outstanding balance and deliver organised files, links, guidance and the support boundary."],
+  ["01", "Discover", "We get beneath the requested deliverable: the business, audience, ambition, timing and impression the work needs to create."],
+  ["02", "Define", "Scope, outcome, assets, responsibilities, exclusions and approval path are made explicit before production begins."],
+  ["03", "Direct", "A focused message and visual territory establish the standard. We choose a direction rather than presenting noise as choice."],
+  ["04", "Craft", "The agreed identity, digital experience or launch assets are built as one coherent system, not disconnected pieces."],
+  ["05", "Interrogate", "Spelling, links, dimensions, responsiveness, accessibility basics, claims, licences and visual consistency are challenged before review."],
+  ["06", "Refine", "Feedback is consolidated through one controlled path. Included revisions improve the chosen direction rather than restarting it."],
+  ["07", "Release", "Final approval is recorded and organised assets, links, guidance and support boundaries are handed over deliberately."],
 ] as const;
 
-export const metadata = {
-  title: "Process",
-  description: "The Prime Presence Atelier client journey from qualification and scope through production, QA, approval and handover.",
-  alternates: { canonical: "/process" },
-};
+export const metadata = { title: "Process", description: "The Prime Presence Atelier client journey from discovery and direction through production, QA, approval and handover.", alternates: { canonical: "/process" } };
 
-export default function Page() {
-  return (
-    <PageShell
-      eyebrow="Process"
-      title="A premium experience is controlled from the first conversation."
-      intro="The workflow is designed to protect clarity, quality and momentum. AI can assist with research, options, production and checks; final judgement and client-facing approval remain human."
-    >
-      <ol className="grid gap-px overflow-hidden rounded-[var(--radius-md)] bg-white/10 md:grid-cols-2">
-        {steps.map(([title, text], index) => (
-          <li key={title} className="bg-[#080808] p-8 sm:p-9">
-            <span className="text-xs tracking-[.3em] text-[#C8A348]">0{index + 1}</span>
-            <h2 className="mt-5 font-[family-name:var(--font-cormorant)] text-3xl">{title}</h2>
-            <p className="mt-3 leading-7 text-gray-300">{text}</p>
-          </li>
-        ))}
-      </ol>
+export default function Page(){return <PageShell eyebrow="Process · Behind the work" title="Nothing accidental reaches the client." intro="The visible result may feel effortless. The process behind it should not be. Every stage exists to protect clarity, momentum and the final standard.">
+  <section className="relative -mx-5 overflow-hidden border-y border-white/[.07] bg-[#050504] px-5 py-20 sm:-mx-8 sm:px-8 sm:py-28 lg:-mx-12 lg:px-12 lg:py-32"><div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(201,154,60,.10),transparent_24%)]"/><div className="relative mx-auto max-w-[1180px]"><p className="eyebrow">The principle</p><div className="mt-7 grid gap-8 lg:grid-cols-[1.35fr_.65fr] lg:items-end"><h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(3.3rem,7vw,6.5rem)] leading-[.85] tracking-[-.04em] text-[#f4ede2]">Slow down the <span className="italic text-[#d5a84d]">right decisions.</span><br/>Speed up everything else.</h2><p className="max-w-md text-[15px] leading-8 text-white/48">Technology removes friction where it should. Human judgement remains where it matters: direction, taste, truth, approval and whether the work is ready to carry the client’s name.</p></div></div></section>
 
-      <div className="mt-12 grid gap-4 md:grid-cols-3">
-        {[
-          ["One approval path", "Feedback stays consolidated so conflicting directions do not quietly enter the work."],
-          ["Versioned production", "Important drafts, decisions and final exports are kept identifiable rather than overwritten blindly."],
-          ["Manual fallback", "Critical delivery should still be recoverable when a tool, model or automation is unavailable."],
-        ].map(([title, body]) => (
-          <article key={title} className="surface p-7">
-            <h2 className="text-xl">{title}</h2>
-            <p className="mt-3 text-sm leading-7 text-[var(--muted)]">{body}</p>
-          </article>
-        ))}
-      </div>
-    </PageShell>
-  );
-}
+  <section className="mt-20 sm:mt-28"><div className="relative mx-auto max-w-[1050px]"><div aria-hidden="true" className="absolute bottom-0 left-[15px] top-0 w-px bg-[linear-gradient(#c99a3c,rgba(201,154,60,.12),transparent)] sm:left-[27px]"/><ol className="space-y-4">{steps.map(([n,t,b],i)=><li key={n} className="group relative grid gap-5 pl-12 sm:grid-cols-[70px_.65fr_1.35fr] sm:items-start sm:gap-8 sm:pl-0"><div className="relative z-10 flex h-[31px] w-[31px] items-center justify-center rounded-full border border-[#c99a3c]/40 bg-[#060504] text-[8px] font-bold text-[#d5aa52] sm:h-[55px] sm:w-[55px]">{n}</div><h2 className="font-[family-name:var(--font-cormorant)] text-4xl leading-none text-[#f1e9dd] sm:pt-2 sm:text-5xl">{t}<span className="text-[#c99a3c]">.</span></h2><div className="border-b border-white/[.07] pb-9 sm:pt-1"><p className="max-w-xl text-[15px] leading-8 text-white/48">{b}</p>{i===2&&<p className="mt-4 text-[8px] font-bold uppercase tracking-[.2em] text-[#c99a3c]">The point where the work starts to become visible</p>}</div></li>)}</ol></div></section>
+
+  <section className="relative mt-20 overflow-hidden border border-[#c99a3c]/15 bg-[#070604] px-6 py-14 text-center sm:mt-28 sm:px-10 sm:py-20"><div aria-hidden="true" className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#c99a3c]/[.07]"/><div className="relative mx-auto max-w-3xl"><p className="eyebrow">The standard</p><h2 className="mt-5 font-[family-name:var(--font-cormorant)] text-[clamp(3rem,6vw,5.5rem)] leading-[.88] tracking-[-.035em]">Finished is not when we stop.<br/><span className="italic text-[#d7aa4f]">It is when nothing important is unresolved.</span></h2></div></section>
+</PageShell>}

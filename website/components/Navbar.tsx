@@ -44,7 +44,7 @@ export default function Navbar({ siteName }: { siteName: string }) {
 
   return (
     <>
-      <header id="site-navbar" data-site-navbar="true" className="relative z-40 w-full border-b border-white/[.07] bg-[#050504]">
+      <header id="site-navbar" data-site-navbar="true" className="sticky top-0 z-[9999] w-full border-b border-white/[.07] bg-[#050504]/95 shadow-[0_8px_28px_rgba(0,0,0,.28)] backdrop-blur-md supports-[backdrop-filter]:bg-[#050504]/88">
         <div aria-hidden="true" style={{ height: "env(safe-area-inset-top)" }} />
         <nav aria-label="Primary" className="container-site flex h-[64px] items-center justify-between gap-3 sm:h-[76px]">
           <Link href="/" className="flex min-w-0 items-center gap-3" aria-label={`${siteName} home`}>
@@ -70,7 +70,7 @@ export default function Navbar({ siteName }: { siteName: string }) {
         </nav>
       </header>
 
-      <div ref={menu} id="mobile-menu" aria-hidden={!open} className={`fixed inset-0 overflow-y-auto bg-[#050504] px-6 pb-10 pt-[calc(5rem+env(safe-area-inset-top))] xl:hidden ${open ? "block" : "hidden"}`} style={{ zIndex: 9999 }}>
+      <div ref={menu} id="mobile-menu" aria-hidden={!open} className={`fixed inset-0 overflow-y-auto bg-[#050504] px-6 pb-10 pt-[calc(5rem+env(safe-area-inset-top))] xl:hidden ${open ? "block" : "hidden"}`} style={{ zIndex: 9998 }}>
         <div className="mb-7 border-b border-[#c99a3f]/20 pb-6">
           <p className="font-[family-name:var(--font-cormorant)] text-2xl uppercase tracking-[.16em] text-[#f0e8da]">Prime Presence</p>
           <p className="mt-1 text-[8px] font-semibold uppercase tracking-[.34em] text-[#c99a3c]">Atelier</p>

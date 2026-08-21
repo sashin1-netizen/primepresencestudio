@@ -40,23 +40,15 @@ for (const [browserName, launcher] of Object.entries(browsers)) {
           const visibleBefore = await navbar.isVisible().catch(() => false);
           if (!visibleBefore) failures.push(`${browserName} ${viewport.name} ${route}: site navbar not visible before scroll`);
           const position = await navbar.evaluate((el) => getComputedStyle(el).position);
-          if (position !== 'fixed') failures.push(`${browserName} ${viewport.name} ${route}: site navbar position is ${position}, expected fixed`);
+          if (position === 'fixed' || position === 'sticky') failures.push(`${browserName} ${viewport.name} ${route}: site navbar should scroll naturally, found ${position}`);
 
-          const before = await navbar.boundingBox();
           await page.evaluate(() => window.scrollTo(0, Math.min(700, Math.max(0, document.documentElement.scrollHeight - window.innerHeight))));
-          await page.waitForTimeout(180);
-          const after = await navbar.boundingBox();
+          await page.waitForTimeout(120);
           const scrollY = await page.evaluate(() => window.scrollY);
-          const visibleAfter = await navbar.isVisible().catch(() => false);
-
-          if (scrollY > 20) {
-            if (!visibleAfter) failures.push(`${browserName} ${viewport.name} ${route}: site navbar not visible after scroll`);
-            if (!after) failures.push(`${browserName} ${viewport.name} ${route}: site navbar has no layout box after scroll`);
-            if (after && Math.abs(after.y) > 2) failures.push(`${browserName} ${viewport.name} ${route}: site navbar moved after scroll (y=${after.y})`);
-            if (before && after && Math.abs(before.x - after.x) > 1) failures.push(`${browserName} ${viewport.name} ${route}: site navbar shifted horizontally after scroll`);
-          }
+          const after = await navbar.boundingBox();
+          if (scrollY > 100 && after && after.y >= -2) failures.push(`${browserName} ${viewport.name} ${route}: site navbar did not scroll away with the page`);
           await page.evaluate(() => window.scrollTo(0, 0));
-          await page.waitForTimeout(50);
+          await page.waitForTimeout(40);
         }
 
         if (route === '/') {
@@ -101,4 +93,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('Cross-browser QA passed in Chromium, Firefox and WebKit across all configured viewports, including the real fixed site navbar.');
+console.log('Cross-browser QA passed in Chromium, Firefox and WebKit across all configured viewports, with the navbar scrolling naturally and the hero video present.');

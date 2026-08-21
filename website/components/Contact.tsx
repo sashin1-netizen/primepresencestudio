@@ -39,49 +39,78 @@ export default function Contact({ headingLevel = "h2", contact }: { headingLevel
     }
   }
 
-  const field = "mt-2 w-full min-w-0 rounded-[var(--radius-sm)] border border-white/15 bg-black/35 px-4 py-3.5 text-white transition-colors placeholder:text-white/30 hover:border-white/25 focus:border-[#C8A348]";
+  const field = "mt-2.5 w-full min-w-0 border-0 border-b border-white/14 bg-transparent px-0 pb-3 pt-2 text-[15px] text-[#f3eee5] outline-none transition placeholder:text-white/24 hover:border-white/28 focus:border-[#d3a84f]";
+  const selectField = `${field} appearance-none pr-8`;
   const Heading = headingLevel;
 
   return (
-    <section id="contact" className="section-space border-t border-white/10 bg-[#060606] px-4 sm:px-8">
-      <div className="mx-auto grid min-w-0 max-w-7xl gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-16">
-        <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
-          <p className="eyebrow">Start a project</p>
-          <Heading className="section-title mt-5 text-balance">Tell us what needs to make a stronger first impression.</Heading>
-          <p className="mt-6 max-w-xl leading-8 text-gray-300">You do not need a polished brief. Share what the business is launching, changing or trying to improve, who needs to trust it and when it matters.</p>
-          <div className="mt-8 border-l border-[#c8a348]/50 pl-5"><p className="font-semibold text-white">What happens next</p><p className="mt-2 leading-7 text-[var(--muted)]">The enquiry is reviewed for fit first. If the atelier can help, the next step is a short discovery followed by a written scope, exclusions, timing and commencement deposit.</p></div>
+    <section id="contact" className="relative overflow-hidden bg-[#040403] px-4 py-20 sm:px-8 sm:py-28 lg:px-12 lg:py-32">
+      <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_14%_12%,rgba(201,154,60,.08),transparent_26rem),radial-gradient(circle_at_88%_82%,rgba(201,154,60,.045),transparent_28rem)]" />
+      <div className="relative mx-auto max-w-[1380px]">
+        <div className="grid gap-16 lg:grid-cols-[.78fr_1.22fr] lg:gap-24">
+          <aside className="min-w-0 lg:sticky lg:top-28 lg:self-start">
+            <p className="eyebrow flex items-center gap-3"><span className="h-px w-10 bg-[#c99a3c]/70" /> Start a project</p>
+            <Heading className="mt-6 max-w-[12ch] font-[family-name:var(--font-cormorant)] text-[clamp(3.15rem,7vw,5.6rem)] leading-[.88] tracking-[-.04em] text-[#f6efe5]">Tell us what needs to make a stronger first impression.</Heading>
+            <p className="mt-7 max-w-xl text-base leading-8 text-white/54">You do not need a polished brief. Give us the context, the ambition and what needs to change. We will shape the right next step from there.</p>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-            {contact.email ? <a href={`mailto:${contact.email}`} className="flex min-h-14 items-center justify-between border border-[#c8a348]/30 bg-[#c8a348]/[.035] px-5 text-sm text-[#efd178] transition hover:border-[#c8a348]/60"><span>Email</span><span className="text-white/55">→</span></a> : null}
-            {contact.phoneInternational && contact.phoneDisplay ? <a href={buildWhatsAppUrl(contact.phoneInternational, "Hi Prime Presence Atelier, I'd like to discuss a project.")} target="_blank" rel="noreferrer" className="flex min-h-14 items-center justify-between border border-white/12 bg-white/[.025] px-5 text-sm text-white/80 transition hover:border-[#c8a348]/45"><span>WhatsApp</span><span className="text-[#d8ad55]">→</span></a> : null}
-            {contact.phoneHref && contact.phoneDisplay ? <a href={contact.phoneHref} className="flex min-h-14 items-center justify-between border border-white/12 bg-white/[.025] px-5 text-sm text-white/80 transition hover:border-[#c8a348]/45 sm:col-span-2 lg:col-span-1 xl:col-span-2"><span>{contact.phoneDisplay}</span><span className="text-[#d8ad55]">Call →</span></a> : null}
-          </div>
+            <div className="mt-10 border-t border-white/[.08] pt-7">
+              <p className="text-[10px] font-bold uppercase tracking-[.22em] text-[#d4aa52]">What happens next</p>
+              <div className="mt-5 space-y-5">
+                {[['01','Fit review','We review the brief for fit, scope and urgency.'],['02','Discovery','If it is aligned, we arrange a focused conversation.'],['03','Scope','You receive a written scope with timing, exclusions and commencement terms.']].map(([number,title,body]) => <div key={number} className="grid grid-cols-[38px_1fr] gap-3"><span className="text-[10px] font-bold tracking-[.16em] text-[#c99a3c]">{number}</span><div><p className="font-[family-name:var(--font-cormorant)] text-2xl text-[#eee7dc]">{title}</p><p className="mt-1 text-sm leading-7 text-white/42">{body}</p></div></div>)}
+              </div>
+            </div>
+
+            <div className="mt-10 grid gap-2.5">
+              {contact.email ? <a href={`mailto:${contact.email}`} className="group flex min-h-14 items-center justify-between border-b border-white/[.09] text-sm text-white/72 transition hover:border-[#c99a3c]/45 hover:text-[#efcc75]"><span>Email</span><span className="transition-transform group-hover:translate-x-1">→</span></a> : null}
+              {contact.phoneInternational && contact.phoneDisplay ? <a href={buildWhatsAppUrl(contact.phoneInternational, "Hi Prime Presence Atelier, I'd like to discuss a project.")} target="_blank" rel="noreferrer" className="group flex min-h-14 items-center justify-between border-b border-white/[.09] text-sm text-white/72 transition hover:border-[#c99a3c]/45 hover:text-[#efcc75]"><span>WhatsApp</span><span className="transition-transform group-hover:translate-x-1">→</span></a> : null}
+              {contact.phoneHref && contact.phoneDisplay ? <a href={contact.phoneHref} className="group flex min-h-14 items-center justify-between border-b border-white/[.09] text-sm text-white/72 transition hover:border-[#c99a3c]/45 hover:text-[#efcc75]"><span>{contact.phoneDisplay}</span><span className="transition-transform group-hover:translate-x-1">Call →</span></a> : null}
+            </div>
+          </aside>
+
+          <form onSubmit={submit} noValidate className="min-w-0 border-t border-[#c99a3c]/28 bg-[linear-gradient(180deg,rgba(255,255,255,.018),rgba(255,255,255,.004))] px-5 py-7 shadow-[0_42px_120px_rgba(0,0,0,.32)] sm:px-8 sm:py-9 lg:px-10 lg:py-10" aria-label="Project enquiry">
+            <FormSection number="01" title="About you" intro="Enough to know who we are speaking with.">
+              <div className="grid gap-6 sm:grid-cols-2">
+                <Field label="Name" required error={errors.name}><input id="name-field" name="name" required autoComplete="name" className={field} aria-invalid={Boolean(errors.name)} placeholder="Your name" /></Field>
+                <Field label="Business name"><input name="business" autoComplete="organization" className={field} placeholder="Business or brand" /></Field>
+                <Field label="Email" required error={errors.email}><input id="email-field" name="email" required type="email" autoComplete="email" className={field} aria-invalid={Boolean(errors.email)} placeholder="you@business.com" /></Field>
+                <Field label="Telephone"><input name="phone" type="tel" autoComplete="tel" inputMode="tel" className={field} placeholder="Optional" /></Field>
+              </div>
+            </FormSection>
+
+            <FormSection number="02" title="The project" intro="Where you are now and what you are preparing to change.">
+              <div className="grid gap-6 sm:grid-cols-2">
+                <Field label="What do you need?"><select name="service" className={selectField}><option>Not sure yet</option>{services.map(service => <option key={service.slug}>{service.title}</option>)}</select></Field>
+                <Field label="Budget readiness"><select name="budget" className={selectField}><option>Still defining the budget</option><option>Ready to fund the right scoped project</option><option>Need guidance on what is realistic</option></select></Field>
+                <Field label="Preferred timeline" wide><select name="timeline" className={selectField}><option>Flexible</option><option>Within 30 days</option><option>1–3 months</option><option>3+ months</option></select></Field>
+              </div>
+            </FormSection>
+
+            <FormSection number="03" title="What should change?" intro="This is the most useful part of the brief.">
+              <Field label="Project details" required error={errors.details} wide><textarea id="details-field" name="details" required minLength={20} className={`${field} min-h-40 resize-y border border-white/10 bg-black/20 px-4 py-4 focus:border-[#c99a3c]/65`} aria-invalid={Boolean(errors.details)} placeholder="What are you launching or changing? Who needs to trust it? What feels weak, unclear or outdated today?" /><span className="mt-2 block text-xs leading-5 text-white/34">A few useful sentences are enough. No formal brief required.</span></Field>
+            </FormSection>
+
+            <div className="mt-9 border-t border-white/[.08] pt-7">
+              <label className="flex items-start gap-3 text-sm leading-6 text-white/56"><input id="consent-field" name="consent" value="yes" required type="checkbox" className="mt-1 h-5 w-5 shrink-0 accent-[#c8a348]" />I agree that these details may be used to prepare or respond to my project enquiry.</label>
+              {contact.privacyApproved ? <a href="/privacy" className="ml-8 mt-2 inline-flex text-sm text-[#f0d788] underline underline-offset-4">Read the privacy policy</a> : <p className="ml-8 mt-2 text-xs leading-5 text-white/34">Until the privacy policy is approved, this page does not transmit or store your form data.</p>}
+              {errors.consent && <p className="mt-2 text-sm text-red-300">{errors.consent}</p>}
+
+              <div className="mt-7 grid gap-3 sm:grid-cols-[1fr_auto] sm:items-center">
+                <button className="luxury-cta inline-flex min-h-14 items-center justify-center px-7 text-[10px] font-bold uppercase tracking-[.18em] text-[#efcb73]" type="submit">{liveSubmission ? "Send Project Enquiry" : "Prepare Project Brief"}</button>
+                <p className="max-w-xs text-xs leading-5 text-white/32">{liveSubmission ? "Opens in your email app for review before sending." : "Nothing is uploaded or stored. Your brief is copied for direct sending."}</p>
+              </div>
+              {status ? <p role="status" className="mt-5 border-l border-[#c8a348]/50 bg-[#c8a348]/[.035] px-4 py-3 text-sm leading-6 text-[#ead69a]">{status}</p> : null}
+            </div>
+          </form>
         </div>
-
-        <form onSubmit={submit} noValidate className="grid min-w-0 gap-5 rounded-[var(--radius-lg)] border border-white/10 bg-[linear-gradient(145deg,#0d0c0b,#080808)] p-6 shadow-[0_32px_100px_rgba(0,0,0,.28)] sm:grid-cols-2 sm:p-8" aria-label="Project enquiry">
-          <Field label="Name" required error={errors.name}><input id="name-field" name="name" required autoComplete="name" className={field} aria-invalid={Boolean(errors.name)} /></Field>
-          <Field label="Business name"><input name="business" autoComplete="organization" className={field} /></Field>
-          <Field label="Email" required error={errors.email}><input id="email-field" name="email" required type="email" autoComplete="email" className={field} aria-invalid={Boolean(errors.email)} /></Field>
-          <Field label="Telephone"><input name="phone" type="tel" autoComplete="tel" inputMode="tel" className={field} /></Field>
-          <Field label="What do you need?"><select name="service" className={field}><option>Not sure yet</option>{services.map(service => <option key={service.slug}>{service.title}</option>)}</select></Field>
-          <Field label="Budget readiness"><select name="budget" className={field}><option>Still defining the budget</option><option>Ready to fund the right scoped project</option><option>Need guidance on what is realistic</option></select></Field>
-          <Field label="Preferred timeline"><select name="timeline" className={field}><option>Flexible</option><option>Within 30 days</option><option>1–3 months</option><option>3+ months</option></select></Field>
-          <div className="hidden sm:block" aria-hidden="true" />
-          <Field label="Project details" required error={errors.details} wide><textarea id="details-field" name="details" required minLength={20} className={`${field} min-h-40 resize-y`} aria-invalid={Boolean(errors.details)} /><span className="mt-2 block text-xs leading-5 text-[var(--muted)]">What are you launching or changing? Who is it for? What is not working today?</span></Field>
-          <div className="sm:col-span-2">
-            <label className="flex items-start gap-3 text-sm leading-6 text-gray-300"><input id="consent-field" name="consent" value="yes" required type="checkbox" className="mt-1 h-5 w-5 shrink-0 accent-[#c8a348]" />I agree that these details may be used to prepare or respond to my project enquiry.</label>
-            {contact.privacyApproved ? <a href="/privacy" className="ml-8 mt-2 inline-flex text-sm text-[#f0d788] underline underline-offset-4">Read the privacy policy</a> : <p className="ml-8 mt-2 text-xs leading-5 text-white/40">Until the privacy policy is approved, this page does not transmit or store your form data.</p>}
-            {errors.consent && <p className="mt-2 text-sm text-red-300">{errors.consent}</p>}
-          </div>
-          <button className="button-primary sm:col-span-2" type="submit">{liveSubmission ? "Send Project Enquiry" : "Copy Project Brief"}</button>
-          {status ? <p role="status" className="rounded-lg border border-[#c8a348]/20 bg-[#c8a348]/[.04] p-4 text-center text-sm leading-6 text-[#ead69a] sm:col-span-2">{status}</p> : null}
-          <p className="text-center text-xs leading-5 text-[var(--muted)] sm:col-span-2">{liveSubmission ? "Your enquiry opens in your default email app so you can review it before sending." : "Nothing is uploaded or stored. Copy the brief, then send it directly by email or WhatsApp."}</p>
-        </form>
       </div>
     </section>
   );
 }
 
+function FormSection({ number, title, intro, children }: { number: string; title: string; intro: string; children: React.ReactNode }) {
+  return <section className="border-b border-white/[.08] pb-8 pt-2 first:pt-0 sm:pb-9"><div className="mb-7 grid gap-2 sm:grid-cols-[48px_1fr] sm:gap-4"><p className="text-[10px] font-bold tracking-[.2em] text-[#c99a3c]">{number}</p><div><h3 className="font-[family-name:var(--font-cormorant)] text-3xl leading-none text-[#f2eadf]">{title}</h3><p className="mt-2 text-sm leading-6 text-white/36">{intro}</p></div></div>{children}</section>;
+}
+
 function Field({ label, required, error, wide, children }: { label: string; required?: boolean; error?: string; wide?: boolean; children: React.ReactNode }) {
-  return <label className={`min-w-0 ${wide ? "sm:col-span-2" : ""}`}><span className="text-sm font-medium text-gray-200">{label}{required && <span aria-hidden="true"> *</span>}</span>{children}{error && <span className="mt-2 block text-sm text-red-300">{error}</span>}</label>;
+  return <label className={`min-w-0 ${wide ? "sm:col-span-2" : ""}`}><span className="text-[10px] font-bold uppercase tracking-[.13em] text-white/44">{label}{required && <span aria-hidden="true"> *</span>}</span>{children}{error && <span className="mt-2 block text-sm text-red-300">{error}</span>}</label>;
 }

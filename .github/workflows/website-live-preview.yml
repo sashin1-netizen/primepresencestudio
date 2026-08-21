@@ -11,15 +11,13 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: prime-presence-pages-preview
+  group: prime-presence-live-preview-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  preview-build:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -35,9 +33,6 @@ jobs:
           cache: npm
           cache-dependency-path: website/package-lock.json
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-
       - name: Install dependencies
         run: npm ci
 
@@ -46,19 +41,17 @@ jobs:
         env:
           GITHUB_PAGES_PREVIEW: "true"
           PUBLIC_LAUNCH_APPROVED: "false"
+          NEXT_PUBLIC_BASE_PATH: "/primepresencestudio"
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Verify exported homepage
+        run: |
+          test -f out/index.html
+          grep -q "Prime Presence Atelier" out/index.html
+
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4
         with:
+          name: prime-presence-live-preview-${{ github.sha }}
           path: website/out
-
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          if-no-files-found: error
+          retention-days: 7

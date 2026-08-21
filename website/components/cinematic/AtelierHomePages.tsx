@@ -20,25 +20,25 @@ const steps = [
 export default function AtelierHomePages({ location }: { location: string }) {
   return (
     <main id="main-content" className="overflow-hidden bg-[#040403] text-[#f4efe6]">
-      <section className="relative isolate min-h-[100svh] overflow-hidden border-b border-white/[.07]">
-        <video className="absolute inset-0 -z-30 h-full w-full object-cover object-[64%_center] sm:object-center" autoPlay muted loop playsInline preload="metadata" poster={`${basePath}/media/ppa-studio-scene.webp`} aria-hidden="true">
+      <section className="relative isolate min-h-[calc(100svh-64px)] overflow-hidden border-b border-white/[.07] sm:min-h-[calc(100svh-76px)]">
+        <video className="absolute inset-0 -z-30 h-full w-full object-cover object-[68%_center] sm:object-center" autoPlay muted loop playsInline preload="metadata" poster={`${basePath}/media/ppa-studio-scene.webp`} aria-hidden="true">
           <source src={`${basePath}/media/ppa-hero-film.mp4`} type="video/mp4" />
         </video>
-        <div aria-hidden="true" className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(3,3,3,.16)_0%,rgba(3,3,3,.22)_32%,rgba(3,3,3,.68)_68%,#040403_100%)] sm:bg-[linear-gradient(90deg,rgba(3,3,3,.92)_0%,rgba(3,3,3,.62)_45%,rgba(3,3,3,.18)_80%),linear-gradient(0deg,rgba(3,3,3,.55),transparent_55%)]" />
-        <div aria-hidden="true" className="luxury-grain absolute inset-0 -z-10" />
+        <div aria-hidden="true" className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(3,3,3,.08)_0%,rgba(3,3,3,.16)_34%,rgba(3,3,3,.60)_68%,#040403_100%)] sm:bg-[linear-gradient(90deg,rgba(3,3,3,.88)_0%,rgba(3,3,3,.58)_44%,rgba(3,3,3,.12)_82%),linear-gradient(0deg,rgba(3,3,3,.48),transparent_58%)]" />
+        <div aria-hidden="true" className="luxury-grain absolute inset-0 -z-10 opacity-60" />
 
-        <div className="mx-auto flex min-h-[100svh] max-w-[1500px] items-end px-5 pb-8 pt-24 sm:px-10 sm:pb-14 md:px-12 lg:items-center lg:px-16 lg:pb-16">
-          <div className="w-full max-w-[760px]">
-            <p className="eyebrow flex items-center gap-3"><span className="h-px w-8 bg-[#c99a3c]/75 sm:w-12" /> Prime Presence Atelier™</p>
-            <h1 className="mt-5 max-w-[9ch] font-[family-name:var(--font-cormorant)] text-[clamp(3.2rem,14vw,4.9rem)] font-medium leading-[.82] tracking-[-.045em] text-[#f9f3e9] sm:mt-7 md:max-w-none md:text-[clamp(5.2rem,8vw,8.7rem)] md:leading-[.8]">
-              We craft <span className="block bg-gradient-to-r from-[#f7df99] via-[#d09b38] to-[#f2cd76] bg-clip-text italic text-transparent">presence.</span>
+        <div className="mx-auto flex min-h-[calc(100svh-64px)] max-w-[1500px] items-end px-5 pb-8 sm:min-h-[calc(100svh-76px)] sm:px-10 sm:pb-12 md:px-12 lg:items-center lg:px-16 lg:pb-14">
+          <div className="w-full max-w-[680px]">
+            <p className="eyebrow flex items-center gap-3 text-[8px] tracking-[.18em] sm:text-[9px]"><span className="h-px w-7 bg-[#c99a3c]/70 sm:w-10" /> Prime Presence Atelier™</p>
+            <h1 className="mt-4 max-w-[8.5ch] font-[family-name:var(--font-cormorant)] text-[clamp(2.9rem,12.5vw,4.25rem)] font-medium leading-[.86] tracking-[-.04em] text-[#f9f3e9] sm:mt-6 md:max-w-none md:text-[clamp(5rem,7.6vw,8rem)] md:leading-[.82]">
+              We craft <span className="block bg-gradient-to-r from-[#f5dc93] via-[#cd9736] to-[#efca72] bg-clip-text italic text-transparent">presence.</span>
             </h1>
-            <p className="mt-5 max-w-[34rem] text-[15px] leading-7 text-[#d7cfc3] sm:text-lg sm:leading-8">Premium identity, digital presence and launch experiences for businesses that refuse to look interchangeable.</p>
-            <div className="mt-6 grid gap-3 sm:mt-8 sm:flex">
-              <Link href="/contact" className="luxury-cta inline-flex min-h-12 items-center justify-between px-5 text-[10px] font-bold uppercase tracking-[.15em] text-[#f2d17c] sm:min-h-14 sm:min-w-60 sm:px-7">Start a Project <span>→</span></Link>
-              <Link href="/work" className="inline-flex min-h-12 items-center justify-center border border-white/14 bg-black/20 px-5 text-[10px] font-bold uppercase tracking-[.14em] text-white/72 backdrop-blur-sm transition hover:text-[#e5bd67] sm:min-h-14">Explore the Work</Link>
+            <p className="mt-5 max-w-[29rem] text-[14px] leading-6 text-[#d3cbc0] sm:text-[17px] sm:leading-8">Premium identity and digital experiences for businesses that intend to be remembered.</p>
+            <div className="mt-6 flex flex-col items-start gap-4 sm:mt-8 sm:flex-row sm:items-center sm:gap-7">
+              <Link href="/contact" className="luxury-cta inline-flex min-h-12 min-w-[190px] items-center justify-between px-5 text-[9px] font-bold uppercase tracking-[.14em] text-[#f2d17c] sm:min-h-14 sm:min-w-56 sm:px-7">Start a Project <span>→</span></Link>
+              <Link href="/work" className="inline-flex min-h-10 items-center gap-3 border-b border-white/20 text-[9px] font-bold uppercase tracking-[.14em] text-white/66 transition-colors hover:border-[#d5ad55]/65 hover:text-[#e5bd67]">Explore the Work <span>→</span></Link>
             </div>
-            <p className="mt-5 text-[9px] font-semibold uppercase tracking-[.16em] text-white/42">{location} · Worldwide remote delivery</p>
+            <p className="mt-6 max-w-[29rem] text-[8px] font-semibold uppercase tracking-[.14em] text-white/34 sm:text-[9px]">{location} · Worldwide remote delivery</p>
           </div>
         </div>
       </section>

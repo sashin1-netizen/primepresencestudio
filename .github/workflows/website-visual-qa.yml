@@ -17,8 +17,9 @@ permissions:
   contents: read
 
 jobs:
-  screenshots:
+  cross-browser:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     defaults:
       run:
         working-directory: website
@@ -36,10 +37,10 @@ jobs:
       - name: Install application dependencies
         run: npm ci
 
-      - name: Install browser tooling
+      - name: Install Playwright browsers
         run: |
           npm install --no-save --package-lock=false playwright@1.55.0
-          npx playwright install chromium
+          npx playwright install --with-deps chromium firefox webkit
 
       - name: Build private preview
         run: npm run build
@@ -50,7 +51,7 @@ jobs:
         run: |
           npm start -- -p 3000 > /tmp/prime-presence-next.log 2>&1 &
           echo $! > /tmp/prime-presence-next.pid
-          for attempt in {1..30}; do
+          for attempt in {1..40}; do
             if curl --fail --silent http://127.0.0.1:3000 >/dev/null; then
               exit 0
             fi
@@ -59,15 +60,11 @@ jobs:
           cat /tmp/prime-presence-next.log
           exit 1
 
-      - name: Capture desktop and mobile pages
-        run: |
-          mkdir -p visual-qa
-          for route in "home:/" "services:/services" "connect:/connect" "work:/work" "process:/process" "about:/about" "contact:/contact"; do
-            name="${route%%:*}"
-            path="${route#*:}"
-            npx playwright screenshot --browser chromium --full-page --viewport-size="1440,900" "http://127.0.0.1:3000${path}" "visual-qa/${name}-desktop.png"
-            npx playwright screenshot --browser chromium --full-page --viewport-size="390,844" "http://127.0.0.1:3000${path}" "visual-qa/${name}-mobile.png"
-          done
+      - name: Run cross-browser and responsive assertions
+        run: node scripts/cross-browser-qa.mjs
+
+      - name: Capture representative visual QA screenshots
+        run: node scripts/capture-visual-qa.mjs
 
       - name: Upload visual QA screenshots
         uses: actions/upload-artifact@v4

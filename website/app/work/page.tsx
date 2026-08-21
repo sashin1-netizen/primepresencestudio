@@ -5,75 +5,15 @@ import ProjectShowcase from "@/components/portfolio/ProjectShowcase";
 import { publishedProjects } from "@/content/projects";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+export const metadata={title:"Selected Work",description:"Approved client work and owned proof from Prime Presence Atelier.",alternates:{canonical:"/work"}};
 
-export const metadata = {
-  title: "Selected Work",
-  description: "Approved client work and owned proof from Prime Presence Atelier, including the studio identity and Prime Presence Connect.",
-  alternates: { canonical: "/work" },
-};
+export default function Page(){return <PageShell eyebrow="Selected work · The archive" title="Proof, not performance." intro="Only work we own or have permission to publish belongs here. The archive will grow slowly on purpose.">
+  <section className="relative -mx-5 overflow-hidden border-y border-white/[.07] bg-[#050504] px-5 py-20 sm:-mx-8 sm:px-8 sm:py-28 lg:-mx-12 lg:px-12 lg:py-32"><div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(circle_at_78%_20%,rgba(201,154,60,.10),transparent_27%)]"/><div className="relative mx-auto max-w-[1180px]"><div className="grid gap-10 lg:grid-cols-[.6fr_1.4fr] lg:items-end"><div><p className="eyebrow">Archive rule 01</p><p className="mt-5 max-w-xs text-sm leading-7 text-white/40">No borrowed credibility. No fictional case studies. No work published before permission.</p></div><h2 className="max-w-[13ch] font-[family-name:var(--font-cormorant)] text-[clamp(3.3rem,7vw,6.5rem)] leading-[.86] tracking-[-.04em] text-[#f4ede2]">If it cannot be shown <span className="italic text-[#d6aa50]">truthfully,</span> it does not belong here.</h2></div></div></section>
 
-const ownedProof = [
-  {
-    title: "Prime Presence Atelier",
-    label: "Owned brand system",
-    body: "A complete studio identity and digital experience built around the promise of premium first impressions, founder attention and disciplined delivery.",
-    href: "/about",
-    cta: "See the thinking",
-    image: "/media/ppa-hero-collateral.webp",
-    alt: "Prime Presence Atelier black and gold brand collateral",
-  },
-  {
-    title: "Prime Presence Connect™",
-    label: "Owned digital product",
-    body: "A reusable digital business-card and branded mini-profile system built around mobile contact actions, QR, vCard and controlled publishing.",
-    href: "/connect",
-    cta: "Explore Connect",
-    image: "/media/ppa-studio-scene.webp",
-    alt: "Prime Presence Atelier premium studio environment",
-  },
-] as const;
+  <section className="mt-20 sm:mt-28"><div className="grid gap-5 lg:grid-cols-[1.25fr_.75fr]">
+    <article className="group relative min-h-[520px] overflow-hidden border border-white/[.08] bg-[#080706] sm:min-h-[620px]"><Image src={`${basePath}/media/ppa-hero-collateral.webp`} alt="Prime Presence Atelier black and gold identity collateral" fill sizes="(max-width:1024px) 100vw,65vw" className="object-cover transition-transform duration-1000 group-hover:scale-[1.018]"/><div className="absolute inset-0 bg-[linear-gradient(0deg,#050504_0%,rgba(5,5,4,.20)_62%,rgba(5,5,4,.06)_100%)]"/><div className="absolute inset-x-0 bottom-0 p-7 sm:p-10"><p className="eyebrow">01 · Owned brand system</p><h2 className="mt-4 font-[family-name:var(--font-cormorant)] text-4xl text-white sm:text-6xl">Prime Presence Atelier</h2><p className="mt-4 max-w-xl text-sm leading-7 text-white/58 sm:text-base">The Atelier is also a live demonstration of the standard: identity, digital presence and launch touchpoints built as one system.</p><Link href="/about" className="mt-6 inline-flex min-h-10 items-center gap-4 border-b border-[#c99a3c]/50 text-[9px] font-bold uppercase tracking-[.17em] text-[#deb45a]">See the thinking <span>→</span></Link></div></article>
+    <article className="relative min-h-[430px] overflow-hidden border border-[#c99a3c]/16 bg-[#070604] p-7 sm:p-9 lg:min-h-full"><div aria-hidden="true" className="absolute -right-24 -top-20 h-64 w-64 rounded-full border border-[#c99a3c]/10"/><div className="relative flex h-full flex-col justify-between"><div><div className="inline-flex border border-[#c99a3c]/28 px-3 py-2 text-[8px] font-bold uppercase tracking-[.2em] text-[#d7ac53]">Coming Soon</div><p className="eyebrow mt-7">02 · Product in development</p><h2 className="mt-4 font-[family-name:var(--font-cormorant)] text-4xl leading-[.92] text-white sm:text-5xl">Prime Presence<br/><span className="italic text-[#d6a94e]">Connect™</span></h2></div><div><p className="max-w-sm text-sm leading-7 text-white/45">A new digital introduction experience. Kept deliberately under wraps until it meets the Atelier standard.</p><Link href="/connect" className="mt-6 inline-flex min-h-10 items-center gap-4 border-b border-[#c99a3c]/50 text-[9px] font-bold uppercase tracking-[.17em] text-[#deb45a]">Enter the preview <span>→</span></Link></div></div></article>
+  </div></section>
 
-export default function Page() {
-  return (
-    <PageShell eyebrow="Work" title="Proof should be specific." intro="The archive separates what is genuinely ours, what is approved for publication and what is still in development. No invented case studies and no borrowed credibility.">
-      <div className="mb-14 grid gap-6 md:grid-cols-2">
-        {ownedProof.map((item) => (
-          <article key={item.title} className="group overflow-hidden border border-white/10 bg-[#080808]">
-            <div className="relative min-h-[260px] overflow-hidden sm:min-h-[340px]">
-              <Image src={`${basePath}${item.image}`} alt={item.alt} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover object-center transition duration-700 group-hover:scale-[1.025]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/15 to-transparent" />
-              <p className="eyebrow absolute bottom-5 left-6">{item.label}</p>
-            </div>
-            <div className="p-7 sm:p-9">
-              <h2 className="font-[family-name:var(--font-cormorant)] text-3xl text-white sm:text-4xl">{item.title}</h2>
-              <p className="mt-4 max-w-xl leading-8 text-gray-300">{item.body}</p>
-              <Link href={item.href} className="link-arrow mt-7 inline-flex">{item.cta} <span aria-hidden="true">→</span></Link>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      {publishedProjects.length ? (
-        <>
-          <div className="mb-8"><p className="eyebrow">Approved client work</p><h2 className="mt-4 font-[family-name:var(--font-cormorant)] text-3xl text-white">Published with permission.</h2></div>
-          <ProjectShowcase projects={publishedProjects} />
-        </>
-      ) : (
-        <div className="overflow-hidden border border-[#C8A348]/20 bg-[#C8A348]/5">
-          <div className="grid lg:grid-cols-[.9fr_1.1fr]">
-            <div className="relative min-h-[260px] lg:min-h-[380px]">
-              <Image src={`${basePath}/media/ppa-studio-scene.webp`} alt="Prime Presence Atelier creative studio environment" fill sizes="(max-width: 1024px) 100vw, 45vw" className="object-cover object-center" />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#090806]/65" />
-            </div>
-            <div className="p-7 sm:p-10 lg:flex lg:flex-col lg:justify-center">
-              <p className="eyebrow">Client archive</p>
-              <h2 className="mt-4 font-[family-name:var(--font-cormorant)] text-3xl">Client case studies will appear only after approval.</h2>
-              <p className="mt-4 max-w-2xl leading-8 text-gray-300">Real project imagery, context and outcomes must be cleared before publication. Until then, the owned systems above are the public proof.</p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row"><Link href="/contact" className="button-primary">Discuss Your Project</Link><Link href="/process" className="button-secondary">See the Process</Link></div>
-            </div>
-          </div>
-        </div>
-      )}
-    </PageShell>
-  );
-}
+  {publishedProjects.length?<section className="mt-20 sm:mt-28"><div className="mb-8"><p className="eyebrow">Approved client work</p><h2 className="mt-4 font-[family-name:var(--font-cormorant)] text-4xl text-white">Published with permission.</h2></div><ProjectShowcase projects={publishedProjects}/></section>:<section className="relative mt-20 overflow-hidden border-y border-white/[.07] py-16 text-center sm:mt-28 sm:py-24"><p className="eyebrow">The unopened archive</p><h2 className="mx-auto mt-5 max-w-[14ch] font-[family-name:var(--font-cormorant)] text-[clamp(2.8rem,6vw,5rem)] leading-[.9] text-[#f2eadf]">Some work is better kept <span className="italic text-[#d5a94f]">private until it is ready.</span></h2><p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-white/42">Client case studies appear only after publication approval. Until then, silence is more credible than manufactured proof.</p><Link href="/contact" className="button-primary mt-8">Discuss Your Project</Link></section>}
+</PageShell>}

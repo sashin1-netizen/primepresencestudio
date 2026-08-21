@@ -10,17 +10,9 @@ const links = [["Home", "/"],["About", "/about"],["Work", "/work"],["Process", "
 export default function Navbar({ siteName }: { siteName: string }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   const firstLink = useRef<HTMLAnchorElement>(null);
   const menu = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 8);
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    return () => window.removeEventListener("scroll", update);
-  }, []);
 
   useEffect(() => {
     const background = document.querySelectorAll<HTMLElement>("main, footer");
@@ -52,25 +44,9 @@ export default function Navbar({ siteName }: { siteName: string }) {
 
   return (
     <>
-      <header
-        id="site-navbar"
-        data-site-navbar="true"
-        className={`border-b ${scrolled ? "border-[#c99a3c]/18 bg-[#050504] shadow-[0_10px_34px_rgba(0,0,0,.42)]" : "border-white/[.07] bg-[#050504]/96"}`}
-        style={{
-          position: "fixed",
-          inset: "0 0 auto 0",
-          width: "100vw",
-          maxWidth: "100vw",
-          zIndex: 2147483000,
-          margin: 0,
-          padding: 0,
-          transform: "none",
-          filter: "none",
-          contain: "layout style",
-        }}
-      >
+      <header id="site-navbar" data-site-navbar="true" className="relative z-40 w-full border-b border-white/[.07] bg-[#050504]">
         <div aria-hidden="true" style={{ height: "env(safe-area-inset-top)" }} />
-        <nav aria-label="Primary" className="container-site flex h-[62px] items-center justify-between gap-3 sm:h-[76px]">
+        <nav aria-label="Primary" className="container-site flex h-[64px] items-center justify-between gap-3 sm:h-[76px]">
           <Link href="/" className="flex min-w-0 items-center gap-3" aria-label={`${siteName} home`}>
             <img src={`${basePath}/media/prime-presence-logo.jpg`} alt="" aria-hidden="true" className="h-9 w-9 shrink-0 object-cover sm:h-10 sm:w-10" />
             <span className="min-w-0">
@@ -88,19 +64,13 @@ export default function Navbar({ siteName }: { siteName: string }) {
           </ul>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <Link className="hidden min-h-11 items-center border border-[#c99a3f]/70 px-5 text-[10px] font-semibold uppercase tracking-[.16em] text-[#e4c46f] transition-colors hover:bg-[#c99a3f] hover:text-black md:inline-flex" href="/contact">Let&apos;s Connect</Link>
-            <button ref={toggle} type="button" aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close menu" : "Menu"} onClick={() => setOpen(!open)} className="flex h-10 min-w-[58px] items-center justify-center border border-white/18 bg-black/35 px-3 text-[9px] font-semibold uppercase tracking-[.12em] xl:hidden">{open ? "Close" : "Menu"}</button>
+            <Link className="hidden min-h-11 items-center border border-[#c99a3f]/55 px-5 text-[10px] font-semibold uppercase tracking-[.16em] text-[#e4c46f] transition-colors hover:bg-[#c99a3f] hover:text-black md:inline-flex" href="/contact">Let&apos;s Connect</Link>
+            <button ref={toggle} type="button" aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close menu" : "Menu"} onClick={() => setOpen(!open)} className="flex h-10 min-w-[58px] items-center justify-center border border-white/16 bg-black/20 px-3 text-[9px] font-semibold uppercase tracking-[.12em] xl:hidden">{open ? "Close" : "Menu"}</button>
           </div>
         </nav>
       </header>
 
-      <div
-        ref={menu}
-        id="mobile-menu"
-        aria-hidden={!open}
-        className={`fixed inset-0 overflow-y-auto bg-[#050504] px-6 pb-10 pt-[calc(5rem+env(safe-area-inset-top))] xl:hidden ${open ? "block" : "hidden"}`}
-        style={{ zIndex: 2147482999 }}
-      >
+      <div ref={menu} id="mobile-menu" aria-hidden={!open} className={`fixed inset-0 overflow-y-auto bg-[#050504] px-6 pb-10 pt-[calc(5rem+env(safe-area-inset-top))] xl:hidden ${open ? "block" : "hidden"}`} style={{ zIndex: 9999 }}>
         <div className="mb-7 border-b border-[#c99a3f]/20 pb-6">
           <p className="font-[family-name:var(--font-cormorant)] text-2xl uppercase tracking-[.16em] text-[#f0e8da]">Prime Presence</p>
           <p className="mt-1 text-[8px] font-semibold uppercase tracking-[.34em] text-[#c99a3c]">Atelier</p>

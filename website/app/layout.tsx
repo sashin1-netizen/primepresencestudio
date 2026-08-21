@@ -7,7 +7,8 @@ import { publicLaunchEnabled } from "@/lib/preview";
 import PreviewBanner from "@/components/PreviewBanner";
 import { contactDetails } from "@/content/site";
 
-const canonicalBase = process.env.NEXT_PUBLIC_SITE_URL || ownerContent.business.canonicalUrl || "http://localhost:3000";
+const pagesFallback = "https://sashin1-netizen.github.io/primepresencestudio";
+const canonicalBase = process.env.NEXT_PUBLIC_SITE_URL || ownerContent.business.canonicalUrl || pagesFallback;
 const defaultArtwork = selectOpenGraphArtwork(ownerContent.openGraph);
 
 export const metadata: Metadata = {
@@ -23,6 +24,8 @@ export const metadata: Metadata = {
     description: site.description,
     type: "website",
     locale: "en_ZA",
+    url: "/",
+    siteName: site.name,
     ...(defaultArtwork ? { images: [{ url: defaultArtwork.src, width: defaultArtwork.width, height: defaultArtwork.height, alt: defaultArtwork.alt }] } : {}),
   },
   twitter: {

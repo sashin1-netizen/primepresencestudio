@@ -1,0 +1,57 @@
+name: Website CI
+
+on:
+  pull_request:
+    paths:
+      - "website/**"
+      - ".github/workflows/website-ci.yml"
+  push:
+    branches:
+      - "agent/finish-prime-presence-atelier"
+      - "codex/website-cinematic-production"
+    paths:
+      - "website/**"
+      - ".github/workflows/website-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Validate content model
+        run: npm run content:validate
+
+      - name: Production build safety check
+        run: npm run build
+        env:
+          PUBLIC_LAUNCH_APPROVED: "false"

@@ -1,0 +1,57 @@
+name: Prime Presence Live Preview
+
+on:
+  pull_request:
+    branches:
+      - codex/website-cinematic-production
+    paths:
+      - "website/**"
+      - ".github/workflows/website-live-preview.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prime-presence-live-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static preview
+        run: npm run build
+        env:
+          GITHUB_PAGES_PREVIEW: "true"
+          PUBLIC_LAUNCH_APPROVED: "false"
+          NEXT_PUBLIC_BASE_PATH: "/primepresencestudio"
+
+      - name: Verify exported homepage
+        run: |
+          test -f out/index.html
+          grep -q "Prime Presence Atelier" out/index.html
+
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: prime-presence-live-preview-${{ github.sha }}
+          path: website/out
+          if-no-files-found: error
+          retention-days: 7

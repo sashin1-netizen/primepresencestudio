@@ -37,6 +37,43 @@ jobs:
         working-directory: website
         run: npm ci
 
+      - name: Install browser QA tooling
+        working-directory: website
+        run: |
+          npm install --no-save --package-lock=false playwright@1.55.0
+          npx playwright install --with-deps chromium firefox webkit
+
+      - name: Build browser QA preview
+        working-directory: website
+        run: npm run build
+        env:
+          PUBLIC_LAUNCH_APPROVED: "false"
+
+      - name: Start browser QA server
+        working-directory: website
+        run: |
+          npm start -- -p 3000 > /tmp/prime-presence-next.log 2>&1 &
+          echo $! > /tmp/prime-presence-next.pid
+          for attempt in {1..40}; do
+            if curl --fail --silent http://127.0.0.1:3000 >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/prime-presence-next.log
+          exit 1
+
+      - name: Require cross-browser QA
+        working-directory: website
+        run: node scripts/cross-browser-qa.mjs
+
+      - name: Stop browser QA server
+        if: always()
+        run: |
+          if [ -f /tmp/prime-presence-next.pid ]; then
+            kill "$(cat /tmp/prime-presence-next.pid)" || true
+          fi
+
       - name: Build static preview
         working-directory: website
         run: npm run build

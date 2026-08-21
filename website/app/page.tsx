@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import AtelierHomeV2 from "../components/cinematic/AtelierHomeV2";
+import AtelierHomePages from "../components/cinematic/AtelierHomePages";
 import Footer from "../components/Footer";
 import { site } from "@/content/site";
 
@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <Navbar siteName={site.name} />
-      <AtelierHomeV2 location={site.location} />
+      <AtelierHomePages location={site.location} />
       <Footer />
     </>
   );

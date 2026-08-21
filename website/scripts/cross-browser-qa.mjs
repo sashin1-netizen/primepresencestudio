@@ -29,31 +29,31 @@ for (const [browserName, launcher] of Object.entries(browsers)) {
           innerWidth: window.innerWidth,
           htmlScrollWidth: document.documentElement.scrollWidth,
           bodyScrollWidth: document.body.scrollWidth,
-          title: document.title,
         }));
         const maxScrollWidth = Math.max(metrics.htmlScrollWidth, metrics.bodyScrollWidth);
-        if (maxScrollWidth > metrics.innerWidth + 1) {
-          failures.push(`${browserName} ${viewport.name} ${route}: horizontal overflow ${maxScrollWidth}px > ${metrics.innerWidth}px`);
-        }
+        if (maxScrollWidth > metrics.innerWidth + 1) failures.push(`${browserName} ${viewport.name} ${route}: horizontal overflow ${maxScrollWidth}px > ${metrics.innerWidth}px`);
 
-        const header = page.locator('header').first();
-        const navVisible = await header.isVisible().catch(() => false);
-        if (!navVisible) {
-          failures.push(`${browserName} ${viewport.name} ${route}: header not visible`);
+        const navbar = page.locator('#site-navbar');
+        if ((await navbar.count()) !== 1) {
+          failures.push(`${browserName} ${viewport.name} ${route}: site navbar missing or duplicated`);
         } else {
-          const before = await header.boundingBox();
-          const position = await header.evaluate((el) => getComputedStyle(el).position);
-          if (position !== 'fixed') failures.push(`${browserName} ${viewport.name} ${route}: header position is ${position}, expected fixed`);
+          const visibleBefore = await navbar.isVisible().catch(() => false);
+          if (!visibleBefore) failures.push(`${browserName} ${viewport.name} ${route}: site navbar not visible before scroll`);
+          const position = await navbar.evaluate((el) => getComputedStyle(el).position);
+          if (position !== 'fixed') failures.push(`${browserName} ${viewport.name} ${route}: site navbar position is ${position}, expected fixed`);
 
+          const before = await navbar.boundingBox();
           await page.evaluate(() => window.scrollTo(0, Math.min(700, Math.max(0, document.documentElement.scrollHeight - window.innerHeight))));
-          await page.waitForTimeout(120);
-          const after = await header.boundingBox();
+          await page.waitForTimeout(180);
+          const after = await navbar.boundingBox();
           const scrollY = await page.evaluate(() => window.scrollY);
-          if (scrollY > 20 && before && after && Math.abs(after.y) > 2) {
-            failures.push(`${browserName} ${viewport.name} ${route}: header moved off viewport after scroll (y=${after.y})`);
-          }
-          if (scrollY > 20 && after && after.y + after.height <= 0) {
-            failures.push(`${browserName} ${viewport.name} ${route}: header disappeared after scroll`);
+          const visibleAfter = await navbar.isVisible().catch(() => false);
+
+          if (scrollY > 20) {
+            if (!visibleAfter) failures.push(`${browserName} ${viewport.name} ${route}: site navbar not visible after scroll`);
+            if (!after) failures.push(`${browserName} ${viewport.name} ${route}: site navbar has no layout box after scroll`);
+            if (after && Math.abs(after.y) > 2) failures.push(`${browserName} ${viewport.name} ${route}: site navbar moved after scroll (y=${after.y})`);
+            if (before && after && Math.abs(before.x - after.x) > 1) failures.push(`${browserName} ${viewport.name} ${route}: site navbar shifted horizontally after scroll`);
           }
           await page.evaluate(() => window.scrollTo(0, 0));
           await page.waitForTimeout(50);
@@ -67,20 +67,20 @@ for (const [browserName, launcher] of Object.entries(browsers)) {
             const attrs = await video.evaluate((el) => ({
               muted: el.muted,
               loop: el.loop,
-              playsInline: el.playsInline,
               autoplay: el.autoplay,
+              playsInlineAttribute: el.hasAttribute('playsinline'),
               source: el.querySelector('source')?.getAttribute('src') || el.getAttribute('src') || '',
             }));
             if (!attrs.muted) failures.push(`${browserName} ${viewport.name} /: hero video is not muted`);
             if (!attrs.loop) failures.push(`${browserName} ${viewport.name} /: hero video does not loop`);
-            if (!attrs.playsInline) failures.push(`${browserName} ${viewport.name} /: hero video missing playsInline`);
+            if (!attrs.playsInlineAttribute) failures.push(`${browserName} ${viewport.name} /: hero video missing playsinline attribute`);
             if (!attrs.autoplay) failures.push(`${browserName} ${viewport.name} /: hero video missing autoplay`);
             if (!attrs.source.includes('ppa-hero-film.mp4')) failures.push(`${browserName} ${viewport.name} /: unexpected hero video source ${attrs.source}`);
           }
         }
 
-        const buttons = await page.locator('a,button,input,select,textarea').all();
-        for (const el of buttons.slice(0, 120)) {
+        const controls = await page.locator('a,button,input,select,textarea').all();
+        for (const el of controls.slice(0, 120)) {
           const box = await el.boundingBox().catch(() => null);
           if (box && box.x + box.width > viewport.width + 1) {
             failures.push(`${browserName} ${viewport.name} ${route}: interactive element extends beyond viewport`);
@@ -101,4 +101,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('Cross-browser QA passed in Chromium, Firefox and WebKit across all configured viewports, including fixed-navbar scroll checks.');
+console.log('Cross-browser QA passed in Chromium, Firefox and WebKit across all configured viewports, including the real fixed site navbar.');

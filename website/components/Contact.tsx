@@ -33,9 +33,9 @@ export default function Contact({ headingLevel = "h2", contact }: { headingLevel
     const brief = [`Prime Presence Atelier — Project Brief`,`Name: ${input.name}`,`Business: ${input.business || "Not supplied"}`,`Email: ${input.email}`,`Telephone: ${input.phone || "Not supplied"}`,`Service: ${input.service}`,`Budget readiness: ${input.budget}`,`Timeline: ${input.timeline}`,``,input.details].join("\n");
     try {
       await navigator.clipboard.writeText(brief);
-      setStatus("Project brief copied. Keep it ready to send through your preferred contact channel.");
+      setStatus("Project brief copied. Send it by email or WhatsApp using the direct contact options on this page.");
     } catch {
-      setStatus("Your project brief is ready. Select and copy the details from the form before leaving this page.");
+      setStatus("Your project brief is ready. Select and copy the details from the form, then send them by email or WhatsApp.");
     }
   }
 
@@ -50,7 +50,12 @@ export default function Contact({ headingLevel = "h2", contact }: { headingLevel
           <Heading className="section-title mt-5 text-balance">Tell us what needs to make a stronger first impression.</Heading>
           <p className="mt-6 max-w-xl leading-8 text-gray-300">You do not need a polished brief. Share what the business is launching, changing or trying to improve, who needs to trust it and when it matters.</p>
           <div className="mt-8 border-l border-[#c8a348]/50 pl-5"><p className="font-semibold text-white">What happens next</p><p className="mt-2 leading-7 text-[var(--muted)]">The enquiry is reviewed for fit first. If the atelier can help, the next step is a short discovery followed by a written scope, exclusions, timing and commencement deposit.</p></div>
-          {contact.phoneInternational && contact.phoneDisplay ? <a className="link-arrow mt-7 inline-flex" href={buildWhatsAppUrl(contact.phoneInternational, "Hi Prime Presence Atelier, I'd like to discuss a project.")} target="_blank" rel="noreferrer">Prefer WhatsApp? {contact.phoneDisplay} <span aria-hidden="true">→</span></a> : <div className="mt-8 rounded-[var(--radius-sm)] border border-[#c8a348]/20 bg-[#c8a348]/[.035] p-5"><p className="text-sm font-semibold text-[#efd178]">Direct enquiry channel</p><p className="mt-2 text-sm leading-7 text-white/55">The public contact channel is being finalised. You can still complete the brief and copy it in one tap so your project details are ready.</p></div>}
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            {contact.email ? <a href={`mailto:${contact.email}`} className="flex min-h-14 items-center justify-between border border-[#c8a348]/30 bg-[#c8a348]/[.035] px-5 text-sm text-[#efd178] transition hover:border-[#c8a348]/60"><span>Email</span><span className="text-white/55">→</span></a> : null}
+            {contact.phoneInternational && contact.phoneDisplay ? <a href={buildWhatsAppUrl(contact.phoneInternational, "Hi Prime Presence Atelier, I'd like to discuss a project.")} target="_blank" rel="noreferrer" className="flex min-h-14 items-center justify-between border border-white/12 bg-white/[.025] px-5 text-sm text-white/80 transition hover:border-[#c8a348]/45"><span>WhatsApp</span><span className="text-[#d8ad55]">→</span></a> : null}
+            {contact.phoneHref && contact.phoneDisplay ? <a href={contact.phoneHref} className="flex min-h-14 items-center justify-between border border-white/12 bg-white/[.025] px-5 text-sm text-white/80 transition hover:border-[#c8a348]/45 sm:col-span-2 lg:col-span-1 xl:col-span-2"><span>{contact.phoneDisplay}</span><span className="text-[#d8ad55]">Call →</span></a> : null}
+          </div>
         </div>
 
         <form onSubmit={submit} noValidate className="grid min-w-0 gap-5 rounded-[var(--radius-lg)] border border-white/10 bg-[linear-gradient(145deg,#0d0c0b,#080808)] p-6 shadow-[0_32px_100px_rgba(0,0,0,.28)] sm:grid-cols-2 sm:p-8" aria-label="Project enquiry">
@@ -70,7 +75,7 @@ export default function Contact({ headingLevel = "h2", contact }: { headingLevel
           </div>
           <button className="button-primary sm:col-span-2" type="submit">{liveSubmission ? "Send Project Enquiry" : "Copy Project Brief"}</button>
           {status ? <p role="status" className="rounded-lg border border-[#c8a348]/20 bg-[#c8a348]/[.04] p-4 text-center text-sm leading-6 text-[#ead69a] sm:col-span-2">{status}</p> : null}
-          <p className="text-center text-xs leading-5 text-[var(--muted)] sm:col-span-2">{liveSubmission ? "Your enquiry opens in your default email app so you can review it before sending." : "Nothing is uploaded or stored while direct submission is unavailable."}</p>
+          <p className="text-center text-xs leading-5 text-[var(--muted)] sm:col-span-2">{liveSubmission ? "Your enquiry opens in your default email app so you can review it before sending." : "Nothing is uploaded or stored. Copy the brief, then send it directly by email or WhatsApp."}</p>
         </form>
       </div>
     </section>

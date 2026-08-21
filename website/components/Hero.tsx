@@ -12,7 +12,7 @@ export default function Hero({ location }: { location: string; media?: { src: st
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-[#030302] text-white">
       <div className="absolute inset-0">
         <video
-          className="h-full w-full object-cover object-[64%_center] sm:object-center"
+          className="h-full w-full object-cover object-[62%_center] sm:object-center"
           autoPlay={!reduced}
           muted
           loop
@@ -23,12 +23,12 @@ export default function Hero({ location }: { location: string; media?: { src: st
         >
           <source src={`${basePath}/media/ppa-hero-film.mp4`} type="video/mp4" />
         </video>
-        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,2,2,.08)_0%,rgba(2,2,2,.10)_32%,rgba(2,2,2,.36)_52%,rgba(2,2,2,.86)_75%,#030302_100%)] sm:bg-[linear-gradient(90deg,rgba(2,2,2,.91)_0%,rgba(2,2,2,.66)_42%,rgba(2,2,2,.16)_75%,rgba(2,2,2,.05)_100%),linear-gradient(0deg,rgba(2,2,2,.60)_0%,transparent_55%)]" />
+        <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,2,2,.05)_0%,rgba(2,2,2,.10)_30%,rgba(2,2,2,.38)_55%,rgba(2,2,2,.88)_78%,#030302_100%)] sm:bg-[linear-gradient(90deg,rgba(2,2,2,.93)_0%,rgba(2,2,2,.70)_42%,rgba(2,2,2,.17)_74%,rgba(2,2,2,.05)_100%),linear-gradient(0deg,rgba(2,2,2,.62)_0%,transparent_56%)]" />
       </div>
 
       <div className="container-site relative z-10 flex min-h-[100svh] items-end pb-7 pt-20 sm:items-center sm:pb-16 sm:pt-28 lg:pt-24">
         <motion.div initial={false} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduced ? 0 : 0.75, ease: [0.22, 1, 0.36, 1] }} className="w-full max-w-[760px] lg:pl-12">
-          <p className="mb-3 text-[8px] font-semibold uppercase tracking-[.27em] text-[#d9b45e] sm:mb-5 sm:text-[10px] sm:tracking-[.32em]">Prime Presence Atelier™</p>
+          <img src={`${basePath}/media/prime-presence-logo.webp`} alt="Prime Presence Atelier" className="mb-4 h-auto w-[178px] object-contain sm:mb-6 sm:w-[260px]" />
           <h1 className="max-w-[650px] font-[family-name:var(--font-cormorant)] text-[clamp(3.15rem,14vw,5.2rem)] font-medium leading-[.84] tracking-[-.045em] text-[#f4efe5] lg:text-[clamp(5rem,7vw,8rem)]">
             We craft<span className="block bg-gradient-to-r from-[#f3d987] via-[#bd8121] to-[#edc768] bg-clip-text italic text-transparent">presence.</span>
           </h1>

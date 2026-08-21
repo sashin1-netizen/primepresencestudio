@@ -36,8 +36,28 @@ for (const [browserName, launcher] of Object.entries(browsers)) {
           failures.push(`${browserName} ${viewport.name} ${route}: horizontal overflow ${maxScrollWidth}px > ${metrics.innerWidth}px`);
         }
 
-        const navVisible = await page.locator('header').isVisible().catch(() => false);
-        if (!navVisible) failures.push(`${browserName} ${viewport.name} ${route}: header not visible`);
+        const header = page.locator('header').first();
+        const navVisible = await header.isVisible().catch(() => false);
+        if (!navVisible) {
+          failures.push(`${browserName} ${viewport.name} ${route}: header not visible`);
+        } else {
+          const before = await header.boundingBox();
+          const position = await header.evaluate((el) => getComputedStyle(el).position);
+          if (position !== 'fixed') failures.push(`${browserName} ${viewport.name} ${route}: header position is ${position}, expected fixed`);
+
+          await page.evaluate(() => window.scrollTo(0, Math.min(700, Math.max(0, document.documentElement.scrollHeight - window.innerHeight))));
+          await page.waitForTimeout(120);
+          const after = await header.boundingBox();
+          const scrollY = await page.evaluate(() => window.scrollY);
+          if (scrollY > 20 && before && after && Math.abs(after.y) > 2) {
+            failures.push(`${browserName} ${viewport.name} ${route}: header moved off viewport after scroll (y=${after.y})`);
+          }
+          if (scrollY > 20 && after && after.y + after.height <= 0) {
+            failures.push(`${browserName} ${viewport.name} ${route}: header disappeared after scroll`);
+          }
+          await page.evaluate(() => window.scrollTo(0, 0));
+          await page.waitForTimeout(50);
+        }
 
         if (route === '/') {
           const video = page.locator('video').first();
@@ -81,4 +101,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('Cross-browser QA passed in Chromium, Firefox and WebKit across all configured viewports.');
+console.log('Cross-browser QA passed in Chromium, Firefox and WebKit across all configured viewports, including fixed-navbar scroll checks.');

@@ -40,13 +40,18 @@ for (const [browserName, launcher] of Object.entries(browsers)) {
           const visibleBefore = await navbar.isVisible().catch(() => false);
           if (!visibleBefore) failures.push(`${browserName} ${viewport.name} ${route}: site navbar not visible before scroll`);
           const position = await navbar.evaluate((el) => getComputedStyle(el).position);
-          if (position === 'fixed' || position === 'sticky') failures.push(`${browserName} ${viewport.name} ${route}: site navbar should scroll naturally, found ${position}`);
+          if (position !== 'sticky') failures.push(`${browserName} ${viewport.name} ${route}: site navbar position is ${position}, expected sticky`);
 
           await page.evaluate(() => window.scrollTo(0, Math.min(700, Math.max(0, document.documentElement.scrollHeight - window.innerHeight))));
-          await page.waitForTimeout(120);
+          await page.waitForTimeout(180);
           const scrollY = await page.evaluate(() => window.scrollY);
           const after = await navbar.boundingBox();
-          if (scrollY > 100 && after && after.y >= -2) failures.push(`${browserName} ${viewport.name} ${route}: site navbar did not scroll away with the page`);
+          const visibleAfter = await navbar.isVisible().catch(() => false);
+          if (scrollY > 100) {
+            if (!visibleAfter) failures.push(`${browserName} ${viewport.name} ${route}: sticky navbar not visible after scroll`);
+            if (!after) failures.push(`${browserName} ${viewport.name} ${route}: sticky navbar has no box after scroll`);
+            if (after && Math.abs(after.y) > 2) failures.push(`${browserName} ${viewport.name} ${route}: sticky navbar moved from viewport top (y=${after.y})`);
+          }
           await page.evaluate(() => window.scrollTo(0, 0));
           await page.waitForTimeout(40);
         }
@@ -93,4 +98,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log('Cross-browser QA passed in Chromium, Firefox and WebKit across all configured viewports, with the navbar scrolling naturally and the hero video present.');
+console.log('Cross-browser QA passed in Chromium, Firefox and WebKit across all configured viewports, with the sticky navbar pinned after scroll and the hero video present.');

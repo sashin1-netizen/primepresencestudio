@@ -3,7 +3,6 @@ import { contactDetails, site } from "@/content/site";
 import { ownerContent } from "@/content/owner-content.mjs";
 
 const legal = ownerContent.legal;
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const links = [
   ["Work", "/work"],["Services", "/services"],["Connect", "/connect"],["About", "/about"],["Process", "/process"],["Contact", "/contact"],
   ...(legal.privacyApproval && legal.privacyPublicationStatus === "published" && legal.privacyVersion && legal.approvalDate ? [["Privacy", "/privacy"]] : []),
@@ -15,7 +14,8 @@ export default function Footer() {
     <footer className="border-t border-[#C8A348]/20 bg-[#030303] px-5 py-14 sm:px-8 sm:py-16">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <img src={`${basePath}/media/prime-presence-logo.jpg`} alt="Prime Presence Atelier" className="h-auto w-[190px] object-contain sm:w-[240px]" />
+          <p className="font-[family-name:var(--font-cormorant)] text-2xl uppercase tracking-[.18em] text-[#f1e9dc] sm:text-3xl">Prime Presence</p>
+          <p className="mt-1 text-[8px] font-semibold uppercase tracking-[.38em] text-[#c99a3c]">Atelier</p>
           <p className="mt-5 max-w-md text-sm leading-7 text-gray-400">{site.tagline}</p>
           {contactDetails.email ? <a href={`mailto:${contactDetails.email}`} className="mt-6 inline-flex min-h-11 items-center text-sm text-gray-300">{contactDetails.email}</a> : null}
           {contactDetails.phoneDisplay && contactDetails.phoneHref ? <a className="mt-2 block text-sm text-gray-300" href={contactDetails.phoneHref}>{contactDetails.phoneDisplay}</a> : null}

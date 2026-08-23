@@ -63,4 +63,4 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-# Redeploy marker: S&A authentic workshop rebuild 2026-08-23d
+# Redeploy marker: S&A client-ready authenticity pass 2026-08-23e

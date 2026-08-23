@@ -7,46 +7,15 @@ import { services } from "@/content/services";
 import { contactDetails } from "@/content/site";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+export const metadata={title:"The Prime Presence System",description:"Identity, digital presence and launch services shaped as one coherent perception system by Prime Presence Atelier.",alternates:{canonical:"/services"}};
+const variants=["identity","digital","archive","contact","connect"] as const;
 
-export const metadata = {
-  title: "Branding, Digital Presence & Launch Services",
-  description: "Focused brand identity, Prime Presence Connect, launch creative and small-business website services from Prime Presence Atelier in Durban, South Africa.",
-  alternates: { canonical: "/services" },
-};
+export default function Page(){return <PageShell after={<Contact contact={contactDetails}/>} eyebrow="The Prime Presence System" title="One business. One impression." intro="Your customer does not experience a logo, website and launch campaign as separate purchases. They experience one business. We shape the visible system around that reality.">
+<section className="relative mb-16 overflow-hidden border border-[#C8A348]/20 bg-[#080706] shadow-[0_35px_100px_rgba(0,0,0,.45)]"><div className="grid lg:grid-cols-[1.18fr_.82fr]"><div className="relative min-h-[420px] sm:min-h-[540px]"><Image src={`${basePath}/media/ppa-brand-identity-1.webp`} alt="Prime Presence Atelier identity system" fill priority sizes="(max-width:1024px) 100vw,60vw" className="object-cover object-center"/><div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(0,0,0,.56),transparent_55%)]"/><div className="absolute bottom-6 left-6 border-l border-[#c99a3c]/65 bg-black/55 px-4 py-3 backdrop-blur-md"><p className="text-[8px] font-bold uppercase tracking-[.22em] text-[#d7ad55]">Owned proof</p><p className="mt-1 text-[9px] uppercase tracking-[.16em] text-white/55">Identity carried as a system</p></div></div><div className="flex items-center p-7 sm:p-10 lg:p-12"><div><p className="eyebrow">The architecture</p><h2 className="mt-5 font-[family-name:var(--font-cormorant)] text-4xl leading-[.92] text-white sm:text-6xl">Recognise.<br/><span className="italic text-[#d5aa52]">Trust.</span><br/>Remember.</h2><p className="mt-6 text-[15px] leading-8 text-white/55">Every layer has a different job, but every layer should reinforce the same intended perception.</p><div className="mt-8"><AtelierVisual variant="identity" label="Prime Presence system architecture"/></div></div></div></div></section>
 
-const variants = ["identity","digital","connect","archive","contact"] as const;
+<section className="mb-16 border-y border-white/[.08]"><div className="grid sm:grid-cols-4">{[["01","Identity","Recognise"],["02","Digital Presence","Trust"],["03","Launch","Enter"],["04","Connect™","Continue"]].map(([n,t,o],i)=><div key={n} className={`relative min-h-[170px] p-5 sm:min-h-[210px] sm:p-6 ${i?'border-t sm:border-l sm:border-t-0':''} border-white/[.08]`}><p className="text-[8px] font-bold tracking-[.2em] text-[#c99a3c]">{n}</p><p className="mt-7 font-[family-name:var(--font-cormorant)] text-2xl text-white sm:text-3xl">{t}</p><p className="mt-3 text-[9px] font-bold uppercase tracking-[.18em] text-white/34">{o}</p>{i<3&&<span className="absolute -right-2 top-1/2 z-10 hidden text-[#c99a3c] sm:block">→</span>}</div>)}</div></section>
 
-export default function Page() {
-  return (
-    <PageShell after={<Contact contact={contactDetails} />} eyebrow="Services" title="Five focused ways to strengthen the first impression." intro="The public offer is intentionally narrow: complete outcomes the atelier can deliver with care, clear scope and direct founder oversight. Suitable adjacent work can be quoted as a custom project.">
-      <section className="relative mb-16 overflow-hidden border border-[#C8A348]/20 bg-[#080706] shadow-[0_35px_100px_rgba(0,0,0,.45)]">
-        <div className="grid lg:grid-cols-[1.18fr_.82fr]">
-          <div className="relative min-h-[420px] sm:min-h-[520px]"><Image src={`${basePath}/media/ppa-brand-identity-1.webp`} alt="Prime Presence Atelier black and gold brand collateral" fill priority sizes="(max-width:1024px) 100vw,60vw" className="object-cover object-center"/><div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_40%,rgba(5,4,3,.64)),linear-gradient(0deg,rgba(0,0,0,.55),transparent_52%)]"/></div>
-          <div className="flex items-center p-7 sm:p-10 lg:p-12"><div><p className="eyebrow">Creative direction in context</p><h2 className="mt-5 font-[family-name:var(--font-cormorant)] text-4xl leading-[.95] text-white sm:text-5xl">One visual language. Multiple touchpoints.</h2><p className="mt-5 text-[15px] leading-8 text-white/58">Identity, digital presence, launch assets and brand touchpoints should feel like parts of the same world—not separate purchases.</p><div className="mt-8"><AtelierVisual variant="identity" label="Prime Presence identity composition"/></div></div></div>
-        </div>
-      </section>
+<div className="space-y-8">{services.map((service,index)=><article key={service.slug} className="overflow-hidden border border-white/[.08] bg-[#070706]"><div className={`grid lg:grid-cols-[1.1fr_.9fr] ${index%2?'lg:[&>*:first-child]:order-2':''}`}><div className="p-5 sm:p-7 lg:p-9"><AtelierVisual variant={variants[index]||"archive"} label={`${service.title} visual composition`}/></div><div className="flex min-h-[410px] items-center p-7 sm:p-10 lg:p-12"><div className="max-w-xl"><p className="eyebrow">System / 0{index+1}</p><h2 className="mt-5 font-[family-name:var(--font-cormorant)] text-4xl leading-[.95] text-[#f3ece1] sm:text-5xl">{service.title}</h2>{service.slug==="connect"&&<span className="mt-4 inline-block border border-[#c99a3c]/28 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[.18em] text-[#d8ae55]">Coming Soon</span>}<p className="mt-5 text-[15px] leading-8 text-white/58">{service.summary}</p><div className="mt-7 border-t border-white/[.08] pt-5"><p className="text-[9px] font-bold uppercase tracking-[.18em] text-[#c99a3c]">What this layer creates</p><p className="mt-3 text-sm leading-7 text-white/42">{service.deliverables}</p></div><Link href={service.slug==="connect"?"/connect":"/contact"} className="mt-7 inline-flex min-h-11 items-center gap-5 border-b border-[#c99a3c]/55 text-[9px] font-bold uppercase tracking-[.17em] text-[#e0b75f]">{service.slug==="connect"?"Enter the Preview":"Discuss the Direction"} <span>→</span></Link></div></div></div></article>)}</div>
 
-      <div className="space-y-8">
-        {services.map((service, index) => (
-          <article key={service.slug} className="overflow-hidden border border-white/[.08] bg-[#070706]">
-            <div className={`grid lg:grid-cols-[1.1fr_.9fr] ${index % 2 ? 'lg:[&>*:first-child]:order-2' : ''}`}>
-              <div className="p-5 sm:p-7 lg:p-9"><AtelierVisual variant={variants[index] || "archive"} label={`${service.title} visual composition`} /></div>
-              <div className="flex min-h-[430px] items-center p-7 sm:p-10 lg:p-12">
-                <div className="max-w-xl">
-                  <p className="eyebrow">0{index + 1}</p>
-                  <h2 className="mt-5 font-[family-name:var(--font-cormorant)] text-4xl leading-[.95] text-[#f3ece1] sm:text-5xl">{service.title}</h2>
-                  {service.slug === "connect" && <span className="mt-4 inline-block border border-[#c99a3c]/28 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[.18em] text-[#d8ae55]">Coming Soon</span>}
-                  <p className="mt-5 text-[15px] leading-8 text-white/58">{service.summary}</p>
-                  <div className="mt-7 border-t border-white/[.08] pt-5"><p className="text-[9px] font-bold uppercase tracking-[.18em] text-[#c99a3c]">Typical output</p><p className="mt-3 text-sm leading-7 text-white/42">{service.deliverables}</p></div>
-                  <Link href={service.slug === "connect" ? "/connect" : "/contact"} className="mt-7 inline-flex min-h-11 items-center gap-5 border-b border-[#c99a3c]/55 text-[9px] font-bold uppercase tracking-[.17em] text-[#e0b75f]">{service.slug === "connect" ? "Enter the Preview" : "Discuss this offer"} <span>→</span></Link>
-                </div>
-              </div>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <section className="mt-16 grid gap-5 lg:grid-cols-[.9fr_1.1fr]"><AtelierVisual variant="process" label="Scope and delivery system"/><div className="flex items-center border border-[#c99a3c]/16 bg-[#070604] p-7 sm:p-10 lg:p-12"><div><p className="eyebrow">Scope discipline</p><h2 className="mt-4 font-[family-name:var(--font-cormorant)] text-4xl leading-[.95] text-white sm:text-5xl">Premium does not mean unlimited.</h2><p className="mt-6 max-w-3xl text-[15px] leading-8 text-white/52">Every project starts with a defined outcome, required assets, written inclusions and an approval path. Large e-commerce platforms, enterprise applications, legal trademark clearance, professional filming and unsupported automation are outside the launch offer unless separately scoped with the right specialist support.</p></div></div></section>
-    </PageShell>
-  );
-}
+<section className="mt-16 grid gap-5 lg:grid-cols-[.9fr_1.1fr]"><AtelierVisual variant="process" label="Prime Presence delivery system"/><div className="flex items-center border border-[#c99a3c]/16 bg-[#070604] p-7 sm:p-10 lg:p-12"><div><p className="eyebrow">Built deliberately</p><h2 className="mt-4 font-[family-name:var(--font-cormorant)] text-4xl leading-[.95] text-white sm:text-5xl">One direction. Controlled scope. Clear approval.</h2><p className="mt-6 max-w-3xl text-[15px] leading-8 text-white/52">Founder-led direction keeps the standard close to the work. Technology accelerates research, production and QA where useful; human judgement remains responsible for what reaches the client and the market.</p><Link href="/process" className="mt-7 inline-flex min-h-11 items-center gap-5 border-b border-[#c99a3c]/55 text-[9px] font-bold uppercase tracking-[.17em] text-[#e0b75f]">See How It Is Built <span>→</span></Link></div></div></section>
+</PageShell>}

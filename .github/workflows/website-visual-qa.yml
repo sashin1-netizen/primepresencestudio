@@ -1,0 +1,75 @@
+name: Website Visual QA
+
+on:
+  pull_request:
+    paths:
+      - "website/**"
+      - ".github/workflows/website-visual-qa.yml"
+  push:
+    branches:
+      - "agent/finish-prime-presence-atelier"
+    paths:
+      - "website/**"
+      - ".github/workflows/website-visual-qa.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cross-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install application dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: |
+          npm install --no-save --package-lock=false playwright@1.55.0
+          npx playwright install --with-deps chromium firefox webkit
+
+      - name: Build private preview
+        run: npm run build
+        env:
+          PUBLIC_LAUNCH_APPROVED: "false"
+
+      - name: Start preview server
+        run: |
+          npm start -- -p 3000 > /tmp/prime-presence-next.log 2>&1 &
+          echo $! > /tmp/prime-presence-next.pid
+          for attempt in {1..40}; do
+            if curl --fail --silent http://127.0.0.1:3000 >/dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/prime-presence-next.log
+          exit 1
+
+      - name: Run cross-browser and responsive assertions
+        run: node scripts/cross-browser-qa.mjs
+
+      - name: Capture representative visual QA screenshots
+        run: node scripts/capture-visual-qa.mjs
+
+      - name: Upload visual QA screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: prime-presence-visual-qa
+          path: website/visual-qa/*.png
+          if-no-files-found: error
+          retention-days: 7

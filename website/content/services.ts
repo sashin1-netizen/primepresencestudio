@@ -1,9 +1,32 @@
 export const services = [
-  { slug: "brand-strategy", title: "Brand Strategy", summary: "Clarify the position, audience and message your identity needs to express.", deliverables: "Positioning, audience direction, messaging and creative brief." },
-  { slug: "logo-design", title: "Logo Design", summary: "Build a distinctive mark with the craft and flexibility to work everywhere.", deliverables: "Primary logo, responsive variations, colourways and export suite." },
-  { slug: "brand-identity", title: "Brand Identity", summary: "Create a coherent visual language that makes every touchpoint feel intentional.", deliverables: "Logo system, colour, typography, art direction and brand guidelines." },
-  { slug: "brand-reveal", title: "Brand Reveal", summary: "Introduce a new identity through a considered, cinematic launch moment.", deliverables: "Reveal concept, motion direction and launch-ready video assets." },
-  { slug: "social-assets", title: "Social Brand Assets", summary: "Give your team a consistent system for showing up confidently online.", deliverables: "Platform templates, profile assets and launch graphics." },
-  { slug: "websites", title: "Premium Websites", summary: "Turn your positioning into a fast, accessible digital experience built to earn trust.", deliverables: "Strategy, UX, responsive design, development and launch support." },
-  { slug: "cinematic-web", title: "Cinematic Web Experiences", summary: "Use purposeful motion and media to make a high-value launch or story memorable.", deliverables: "Motion direction, interactive storytelling and lightweight fallbacks." },
+  {
+    slug: "brand-identity",
+    title: "Identity",
+    summary: "The visual foundation: positioning, marks, typography, colour and direction shaped around how the business should be recognised and remembered.",
+    deliverables: "Primary and secondary marks, colour system, typography, usage direction and launch-ready brand assets.",
+  },
+  {
+    slug: "web",
+    title: "Digital Presence",
+    summary: "The identity translated into a high-trust digital experience for the moment someone investigates, compares and decides whether to act.",
+    deliverables: "Strategy, responsive UX, design, development, contact journey, accessibility basics and launch support.",
+  },
+  {
+    slug: "launch",
+    title: "Launch",
+    summary: "The coordinated release layer: the assets and presentation needed to introduce a new or renewed presence consistently across important touchpoints.",
+    deliverables: "Launch direction, social starter assets, WhatsApp presentation, announcement creative and release-ready brand assets.",
+  },
+  {
+    slug: "reveal",
+    title: "Reveal",
+    summary: "A focused announcement experience for an identity or launch that deserves movement, pacing and a more memorable first public moment.",
+    deliverables: "Reveal concept, logo motion, short launch video and matching social launch assets.",
+  },
+  {
+    slug: "connect",
+    title: "Connect™",
+    summary: "The next layer of the Prime Presence system: an upcoming mobile-first digital introduction experience for what happens after hello.",
+    deliverables: "In development. Final capabilities and release scope will be published when the product is ready.",
+  },
 ] as const;
